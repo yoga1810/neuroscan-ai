@@ -63,6 +63,29 @@ div[data-testid="stAppViewContainer"] {
     background-color: #080c14 !important;
     background: #080c14 !important;
 }
+/* Fix placeholder text color */
+.stTextInput > div > div > input::placeholder {
+    color: #64748b !important;
+    opacity: 1 !important;
+}
+
+/* Fix typed text color inside inputs */
+.stTextInput > div > div > input {
+    background: #0d1526 !important;
+    border: 1px solid #1e293b !important;
+    color: #f1f5f9 !important;
+    border-radius: 10px !important;
+}
+
+/* Fix email/password fields in the email section too */
+input[type="text"], input[type="password"] {
+    color: #f1f5f9 !important;
+}
+
+input[type="text"]::placeholder, input[type="password"]::placeholder {
+    color: #64748b !important;
+    opacity: 1 !important;
+}
 
 /* Remove white card backgrounds */
 div[data-testid="stVerticalBlock"] > div,
