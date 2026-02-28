@@ -46,15 +46,18 @@ div[data-testid="stFileUploader"] {
 div[data-testid="stFileUploader"]:hover { border-color: #6366f1; }
 
 .stButton > button {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
-    border: none !important;
-    color: white !important;
+    background: linear-gradient(135deg, #4f46e5, #6d28d9) !important;
+    border: 1px solid #312e81 !important;
+    color: #ffffff !important;
     font-weight: 600 !important;
     border-radius: 10px !important;
     padding: 0.6rem 1.5rem !important;
     font-family: 'DM Sans', sans-serif !important;
     letter-spacing: .03em !important;
-    transition: opacity .2s !important;
+}
+
+.stButton > button:hover {
+    opacity: 0.9;
 }
 .stButton > button:hover { opacity: .85 !important; }
 
@@ -245,7 +248,7 @@ def build_email_html(name, age, stage_key, conf, all_probs):
     </p>
   </div>
   <p style="text-align:center;color:#334155;font-size:10px;margin-top:16px;">
-    NeuroScan AI · EfficientNetB0 · 90% Accuracy · {date_str}
+    NeuroScan AI · EfficientNetB0 · 96.3% Accuracy · {date_str}
   </p>
 </div></body></html>"""
 
