@@ -325,11 +325,6 @@ st.markdown("""
   <p style="margin:8px 0 0;color:#64748b;font-size:14px;">
     Upload a brain MRI scan · Get instant classification · Receive personalised care protocol
   </p>
-  <div style="display:inline-block;background:#0d1526;border:1px solid #1e3a5f;
-              border-radius:20px;padding:4px 16px;font-size:11px;color:#38bdf8;margin-top:10px;">
-    EfficientNet-B0 · 90% Accuracy · 4-Class Classification
-  </div>
-</div>
 """, unsafe_allow_html=True)
 
 # ── Patient info ───────────────────────────────────────────────
