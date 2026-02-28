@@ -21,10 +21,11 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
 
+/* AFTER */
 html, body, [class*="css"] {
     font-family: 'DM Sans', sans-serif;
-    background-color: #080c14 ;
-    color : #080c14 ;
+    background-color: #080c14;
+    color: #e2e8f0;   ← change this to bright white
 }
 .main { background-color: #080c14; }
 .block-container { padding: 2rem 2.5rem; max-width: 1150px; }
