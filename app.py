@@ -69,7 +69,30 @@ div[data-testid="stVerticalBlock"] > div,
 div[data-testid="element-container"] {
     background: transparent !important;
 }
+/* Fix all label text to be visible */
+.stTextInput label, 
+div[data-testid="stFileUploader"] label,
+.stFileUploader label,
+p, label, span {
+    color: #e2e8f0 !important;
+}
 
+/* Fix the file uploader text */
+div[data-testid="stFileUploader"] {
+    color: #e2e8f0 !important;
+}
+
+div[data-testid="stFileUploader"] span,
+div[data-testid="stFileUploader"] p,
+div[data-testid="stFileUploader"] small {
+    color: #94a3b8 !important;
+}
+
+/* Fix input labels */
+.stTextInput > label {
+    color: #e2e8f0 !important;
+    font-weight: 500 !important;
+}
 .stButton > button:hover {
     opacity: 0.9;
 }
