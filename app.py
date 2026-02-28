@@ -55,6 +55,19 @@ div[data-testid="stFileUploader"]:hover { border-color: #6366f1; }
     font-family: 'DM Sans', sans-serif !important;
     letter-spacing: .03em !important;
 }
+/* Remove white background from main content area */
+.stApp, .main, .block-container, 
+div[data-testid="stAppViewContainer"] > section,
+div[data-testid="stAppViewContainer"] {
+    background-color: #080c14 !important;
+    background: #080c14 !important;
+}
+
+/* Remove white card backgrounds */
+div[data-testid="stVerticalBlock"] > div,
+div[data-testid="element-container"] {
+    background: transparent !important;
+}
 
 .stButton > button:hover {
     opacity: 0.9;
