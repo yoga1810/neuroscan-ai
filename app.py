@@ -172,9 +172,7 @@ STAGE_DATA = {
             {"name": "Lycopene",             "dose": "10 mg",   "times": ["1:00 PM"],                       "purpose": "Reduces lipid peroxidation in early cognitive decline",           "type": "nutrient"},
             {"name": "Vitamin B12",          "dose": "750 mcg", "times": ["8:00 AM"],                       "purpose": "Slows brain atrophy linked to B12 deficiency in early decline",   "type": "nutrient"},
             {"name": "Curcumin (Turmeric)",  "dose": "500 mg",  "times": ["8:00 AM", "6:00 PM"],            "purpose": "Anti-inflammatory; begins inhibiting amyloid-beta aggregation",   "type": "non-nutrient"},
-            {"name": "Resveratrol",          "dose": "200 mg",  "times": ["8:00 AM", "8:00 PM"],            "purpose": "Crosses blood-brain barrier; reduces neuroinflammatory markers",  "type": "non-nutrient"},
-            {"name": "Ginkgo Biloba",        "dose": "120 mg",  "times": ["8:00 AM", "1:00 PM"],            "purpose": "Enhances cerebral microcirculation & neurotransmitter balance",   "type": "non-nutrient"},
-            {"name": "Lion's Mane Mushroom", "dose": "500 mg",  "times": ["8:00 AM"],                       "purpose": "Stimulates Nerve Growth Factor (NGF); regenerates nerve tissue",  "type": "non-nutrient"},
+        
         ],
     },
     "MildDemented": {
@@ -189,10 +187,7 @@ STAGE_DATA = {
             {"name": "Lycopene",             "dose": "15 mg",    "times": ["1:00 PM", "7:00 PM"],            "purpose": "Combats mitochondrial oxidative stress in mild dementia",         "type": "nutrient"},
             {"name": "Vitamin B12",          "dose": "1000 mcg", "times": ["8:00 AM", "1:00 PM"],            "purpose": "Repairs myelin damage; counters neurodegeneration from deficiency","type": "nutrient"},
             {"name": "Curcumin (Turmeric)",  "dose": "750 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Actively reduces amyloid plaques & tau tangles",                 "type": "non-nutrient"},
-            {"name": "Resveratrol",          "dose": "350 mg",   "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Inhibits beta-amyloid aggregation; anti-neuroinflammatory",       "type": "non-nutrient"},
-            {"name": "Ginkgo Biloba",        "dose": "180 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Platelet-activating factor antagonist; improves brain perfusion",  "type": "non-nutrient"},
-            {"name": "Lion's Mane Mushroom", "dose": "750 mg",   "times": ["8:00 AM", "6:00 PM"],            "purpose": "NGF stimulation; supports myelin repair in declining neurons",    "type": "non-nutrient"},
-            {"name": "Bacopa Monnieri",      "dose": "300 mg",   "times": ["8:00 AM", "8:00 PM"],            "purpose": "Adaptogen; enhances memory consolidation & reduces cortisol",    "type": "non-nutrient"},
+           
         ],
     },
     "ModerateDemented": {
@@ -207,12 +202,7 @@ STAGE_DATA = {
             {"name": "Lycopene",             "dose": "20 mg",    "times": ["8:00 AM", "1:00 PM", "7:00 PM"], "purpose": "Maximum carotenoid protection against advanced brain oxidation",  "type": "nutrient"},
             {"name": "Vitamin B12",          "dose": "1500 mcg", "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Maximum B12 support for severely depleted neurological pathways", "type": "nutrient"},
             {"name": "Curcumin (Turmeric)",  "dose": "1000 mg",  "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "High-dose plaque & tangle inhibition in advanced Alzheimer's",    "type": "non-nutrient"},
-            {"name": "Resveratrol",          "dose": "500 mg",   "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Maximum polyphenol neuroprotection; BBB-crossing anti-amyloid",   "type": "non-nutrient"},
-            {"name": "Ginkgo Biloba",        "dose": "240 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Maximum cerebrovascular support & neuroprotective flavonoids",    "type": "non-nutrient"},
-            {"name": "Lion's Mane Mushroom", "dose": "1000 mg",  "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Maximum NGF stimulation for advanced nerve regeneration support",  "type": "non-nutrient"},
-            {"name": "Bacopa Monnieri",      "dose": "450 mg",   "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Stress hormone regulation; protects synapses in severe decline",  "type": "non-nutrient"},
-            {"name": "Ashwagandha",          "dose": "600 mg",   "times": ["8:00 AM", "9:00 PM"],            "purpose": "Withanolides reduce cortisol & neuroinflammation in late-stage AD","type": "non-nutrient"},
-        ],
+            
     },
 }
 
