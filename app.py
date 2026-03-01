@@ -142,7 +142,6 @@ LABEL_MAP = {
     2: "MildDemented",
     3: "ModerateDemented",
 }
-
 STAGE_DATA = {
     "NonDemented": {
         "label": "Non-Demented", "emoji": "🟢", "color": "#4ade80", "bg": "#052e16",
@@ -156,8 +155,6 @@ STAGE_DATA = {
             {"name": "Lycopene",             "dose": "5 mg",    "times": ["1:00 PM"],            "purpose": "Carotenoid antioxidant; reduces oxidative stress in brain tissue", "type": "nutrient"},
             {"name": "Vitamin B12",          "dose": "500 mcg", "times": ["8:00 AM"],            "purpose": "Reduces homocysteine; supports myelin sheath & nerve conduction",  "type": "nutrient"},
             {"name": "Curcumin (Turmeric)",  "dose": "250 mg",  "times": ["8:00 AM"],            "purpose": "Mild anti-inflammatory; early amyloid plaque prevention",         "type": "non-nutrient"},
-            {"name": "Resveratrol",          "dose": "100 mg",  "times": ["1:00 PM"],            "purpose": "Polyphenol; activates neuroprotective SIRT1 pathways",            "type": "non-nutrient"},
-            {"name": "Ginkgo Biloba",        "dose": "60 mg",   "times": ["8:00 AM"],            "purpose": "Improves cerebral blood flow & oxygen delivery to brain",         "type": "non-nutrient"},
         ],
     },
     "VeryMildDemented": {
@@ -172,7 +169,6 @@ STAGE_DATA = {
             {"name": "Lycopene",             "dose": "10 mg",   "times": ["1:00 PM"],                       "purpose": "Reduces lipid peroxidation in early cognitive decline",           "type": "nutrient"},
             {"name": "Vitamin B12",          "dose": "750 mcg", "times": ["8:00 AM"],                       "purpose": "Slows brain atrophy linked to B12 deficiency in early decline",   "type": "nutrient"},
             {"name": "Curcumin (Turmeric)",  "dose": "500 mg",  "times": ["8:00 AM", "6:00 PM"],            "purpose": "Anti-inflammatory; begins inhibiting amyloid-beta aggregation",   "type": "non-nutrient"},
-        
         ],
     },
     "MildDemented": {
@@ -187,7 +183,6 @@ STAGE_DATA = {
             {"name": "Lycopene",             "dose": "15 mg",    "times": ["1:00 PM", "7:00 PM"],            "purpose": "Combats mitochondrial oxidative stress in mild dementia",         "type": "nutrient"},
             {"name": "Vitamin B12",          "dose": "1000 mcg", "times": ["8:00 AM", "1:00 PM"],            "purpose": "Repairs myelin damage; counters neurodegeneration from deficiency","type": "nutrient"},
             {"name": "Curcumin (Turmeric)",  "dose": "750 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Actively reduces amyloid plaques & tau tangles",                 "type": "non-nutrient"},
-           
         ],
     },
     "ModerateDemented": {
@@ -202,10 +197,9 @@ STAGE_DATA = {
             {"name": "Lycopene",             "dose": "20 mg",    "times": ["8:00 AM", "1:00 PM", "7:00 PM"], "purpose": "Maximum carotenoid protection against advanced brain oxidation",  "type": "nutrient"},
             {"name": "Vitamin B12",          "dose": "1500 mcg", "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Maximum B12 support for severely depleted neurological pathways", "type": "nutrient"},
             {"name": "Curcumin (Turmeric)",  "dose": "1000 mg",  "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "High-dose plaque & tangle inhibition in advanced Alzheimer's",    "type": "non-nutrient"},
-            
+        ],
     },
 }
-
 # ── Model loader ───────────────────────────────────────────────
 @st.cache_resource
 def load_model():
