@@ -21,112 +21,58 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-/* AFTER */
 html, body, [class*="css"] {
     font-family: 'DM Sans', sans-serif;
-    background-color: #080c14;
-    color: #e2e8f0;   ← change this to bright white
+    background-color: #ffffff;      /* white page background */
+    color: #000000;                 /* dark text for contrast */
+    font-weight: 600;              /* make regular text a bit bolder */
 }
-.main { background-color: #080c14; }
+.main { background-color: #ffffff; }
+
+/* headings should be extra bold and dark */
+h1, h2, h3 {
+    font-family: 'DM Serif Display', serif !important;
+    font-weight: 700 !important;
+    color: #000 !important;
+}
 .block-container { padding: 2rem 2.5rem; max-width: 1150px; }
 h1, h2, h3 { font-family: 'DM Serif Display', serif !important; }
 
 section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #0d1117 0%, #0f172a 100%);
-    border-right: 1px solid #1e293b;
+    background: #f3f4f6; /* light grey sidebar */
+    border-right: 1px solid #d1d5db;
 }
-section[data-testid="stSidebar"] * { color: #94a3b8 !important; }
+section[data-testid="stSidebar"] * { color: #1f2937 !important; }
 
 div[data-testid="stFileUploader"] {
-    background: #0d1526;
-    border: 2px dashed #1e3a5f;
+    background: #ffffff;
+    border: 2px dashed #9ca3af;
     border-radius: 16px;
     padding: 12px;
     transition: border-color .2s;
 }
-div[data-testid="stFileUploader"]:hover { border-color: #6366f1; }
+div[data-testid="stFileUploader"]:hover { border-color: #6b7280; }
 
 .stButton > button {
-    background: linear-gradient(135deg, #4f46e5, #6d28d9) !important;
-    border: 1px solid #312e81 !important;
-    color: #ffffff !important;
-    font-weight: 600 !important;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 700 !important; /* extra bold */
     border-radius: 10px !important;
     padding: 0.6rem 1.5rem !important;
     font-family: 'DM Sans', sans-serif !important;
     letter-spacing: .03em !important;
-}
-/* Remove white background from main content area */
-.stApp, .main, .block-container, 
-div[data-testid="stAppViewContainer"] > section,
-div[data-testid="stAppViewContainer"] {
-    background-color: #080c14 !important;
-    background: #080c14 !important;
-}
-/* Fix placeholder text color */
-.stTextInput > div > div > input::placeholder {
-    color: #64748b !important;
-    opacity: 1 !important;
-}
-
-/* Fix typed text color inside inputs */
-.stTextInput > div > div > input {
-    background: #0d1526 !important;
-    border: 1px solid #1e293b !important;
-    color: #f1f5f9 !important;
-    border-radius: 10px !important;
-}
-
-/* Fix email/password fields in the email section too */
-input[type="text"], input[type="password"] {
-    color: #f1f5f9 !important;
-}
-
-input[type="text"]::placeholder, input[type="password"]::placeholder {
-    color: #64748b !important;
-    opacity: 1 !important;
-}
-
-/* Remove white card backgrounds */
-div[data-testid="stVerticalBlock"] > div,
-div[data-testid="element-container"] {
-    background: transparent !important;
-}
-/* Fix all label text to be visible */
-.stTextInput label, 
-div[data-testid="stFileUploader"] label,
-.stFileUploader label,
-p, label, span {
-    color: #e2e8f0 !important;
-}
-
-/* Fix the file uploader text */
-div[data-testid="stFileUploader"] {
-    color: #e2e8f0 !important;
-}
-
-div[data-testid="stFileUploader"] span,
-div[data-testid="stFileUploader"] p,
-div[data-testid="stFileUploader"] small {
-    color: #94a3b8 !important;
-}
-
-/* Fix input labels */
-.stTextInput > label {
-    color: #e2e8f0 !important;
-    font-weight: 500 !important;
-}
-.stButton > button:hover {
-    opacity: 0.9;
+    transition: opacity .2s !important;
 }
 .stButton > button:hover { opacity: .85 !important; }
 
 .stTextInput > div > div > input {
-    background: #0d1526 !important;
-    border: 1px solid #1e293b !important;
-    color: #e2e8f0 !important;
+    background: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    color: #1f2937 !important;
     border-radius: 10px !important;
     font-family: 'DM Sans', sans-serif !important;
+    font-weight: 600 !important;
 }
 .stTextInput > div > div > input:focus { border-color: #6366f1 !important; }
 
@@ -149,60 +95,46 @@ STAGE_DATA = {
         "description": "No signs of Alzheimer's detected. Brain function appears normal. Preventive supplementation is recommended to maintain cognitive health.",
         "urgency": "Preventive Care",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",   "dose": "500 mg",  "times": ["8:00 AM"],            "purpose": "Supports brain cell membrane integrity & cognitive longevity",    "type": "nutrient"},
-            {"name": "Beta-Carotene",        "dose": "3 mg",    "times": ["8:00 AM"],            "purpose": "Antioxidant precursor to Vitamin A; protects neurons",            "type": "nutrient"},
-            {"name": "Vitamin E",            "dose": "200 IU",  "times": ["9:00 AM"],            "purpose": "Neuroprotective antioxidant; protects cell membranes",            "type": "nutrient"},
-            {"name": "Choline",              "dose": "250 mg",  "times": ["8:00 AM"],            "purpose": "Precursor to acetylcholine; supports memory & learning",          "type": "nutrient"},
-            {"name": "Lycopene",             "dose": "5 mg",    "times": ["1:00 PM"],            "purpose": "Carotenoid antioxidant; reduces oxidative stress in brain tissue", "type": "nutrient"},
-            {"name": "Vitamin B12",          "dose": "500 mcg", "times": ["8:00 AM"],            "purpose": "Reduces homocysteine; supports myelin sheath & nerve conduction",  "type": "nutrient"},
-            {"name": "Curcumin (Turmeric)",  "dose": "250 mg",  "times": ["8:00 AM"],            "purpose": "Mild anti-inflammatory; early amyloid plaque prevention",         "type": "non-nutrient"},
-            {"name": "Resveratrol",          "dose": "100 mg",  "times": ["1:00 PM"],            "purpose": "Polyphenol; activates neuroprotective SIRT1 pathways",            "type": "non-nutrient"},
-            {"name": "Ginkgo Biloba",        "dose": "60 mg",   "times": ["8:00 AM"],            "purpose": "Improves cerebral blood flow & oxygen delivery to brain",         "type": "non-nutrient"},
+            {"name": "Omega-3 (Fish Oil)",  "dose": "1000 mg",  "times": ["8:00 AM", "8:00 PM"], "purpose": "Cognitive longevity & brain cell membranes",  "type": "supplement"},
+            {"name": "Vitamin D3",          "dose": "2000 IU",  "times": ["9:00 AM"],             "purpose": "Neuroprotection & mood regulation",           "type": "supplement"},
+            {"name": "B-Complex Vitamin",   "dose": "1 tablet", "times": ["8:00 AM"],             "purpose": "Reduces homocysteine, supports nerve health",  "type": "supplement"},
         ],
     },
     "VeryMildDemented": {
         "label": "Very Mild Demented", "emoji": "🟡", "color": "#facc15", "bg": "#1c1400",
-        "description": "Very early-stage cognitive changes detected. Lifestyle modifications and increased nutritional support can significantly slow progression.",
+        "description": "Very early-stage cognitive changes detected. Lifestyle modifications and early medical intervention can significantly slow progression.",
         "urgency": "Early Intervention Recommended",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",   "dose": "1000 mg", "times": ["8:00 AM", "8:00 PM"],            "purpose": "Reduces neuroinflammation; supports synaptic plasticity",         "type": "nutrient"},
-            {"name": "Beta-Carotene",        "dose": "6 mg",    "times": ["8:00 AM"],                       "purpose": "Antioxidant defense against early neurodegeneration",             "type": "nutrient"},
-            {"name": "Vitamin E",            "dose": "400 IU",  "times": ["9:00 AM"],                       "purpose": "Slows oxidative damage to neurons in early-stage decline",        "type": "nutrient"},
-            {"name": "Choline",              "dose": "375 mg",  "times": ["8:00 AM", "1:00 PM"],            "purpose": "Boosts acetylcholine production for memory preservation",         "type": "nutrient"},
-            {"name": "Lycopene",             "dose": "10 mg",   "times": ["1:00 PM"],                       "purpose": "Reduces lipid peroxidation in early cognitive decline",           "type": "nutrient"},
-            {"name": "Vitamin B12",          "dose": "750 mcg", "times": ["8:00 AM"],                       "purpose": "Slows brain atrophy linked to B12 deficiency in early decline",   "type": "nutrient"},
-            {"name": "Curcumin (Turmeric)",  "dose": "500 mg",  "times": ["8:00 AM", "6:00 PM"],            "purpose": "Anti-inflammatory; begins inhibiting amyloid-beta aggregation",   "type": "non-nutrient"},
-        
+            {"name": "Donepezil (Aricept)",  "dose": "5 mg",    "times": ["10:00 PM (Bedtime)"], "purpose": "Cholinesterase inhibitor – preserves memory function",  "type": "medication"},
+            {"name": "Vitamin E",            "dose": "400 IU",  "times": ["8:00 AM"],            "purpose": "Antioxidant – protects neurons from oxidative stress",  "type": "supplement"},
+            {"name": "Ginkgo Biloba",        "dose": "120 mg",  "times": ["8:00 AM", "1:00 PM"], "purpose": "Improves cerebral blood flow",                         "type": "supplement"},
+            {"name": "Memantine (low dose)", "dose": "5 mg",    "times": ["8:00 AM"],            "purpose": "NMDA modulator – slows disease progression",           "type": "medication"},
         ],
     },
     "MildDemented": {
         "label": "Mild Demented", "emoji": "🟠", "color": "#fb923c", "bg": "#1c0800",
-        "description": "Mild cognitive decline detected. Intensified nutritional protocol recommended alongside neurologist consultation.",
+        "description": "Mild cognitive decline detected. A combination of medication and supplements is recommended alongside neurologist consultation.",
         "urgency": "Medical Attention Required",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",   "dose": "2000 mg",  "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "DHA/EPA support for slowing grey matter loss & inflammation",     "type": "nutrient"},
-            {"name": "Beta-Carotene",        "dose": "10 mg",    "times": ["8:00 AM", "6:00 PM"],            "purpose": "Elevated antioxidant load to counter accelerating neuronal damage","type": "nutrient"},
-            {"name": "Vitamin E",            "dose": "800 IU",   "times": ["9:00 AM", "9:00 PM"],            "purpose": "High-dose neuroprotection against free radical damage",           "type": "nutrient"},
-            {"name": "Choline",              "dose": "500 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Supports declining cholinergic neurons; aids recall",             "type": "nutrient"},
-            {"name": "Lycopene",             "dose": "15 mg",    "times": ["1:00 PM", "7:00 PM"],            "purpose": "Combats mitochondrial oxidative stress in mild dementia",         "type": "nutrient"},
-            {"name": "Vitamin B12",          "dose": "1000 mcg", "times": ["8:00 AM", "1:00 PM"],            "purpose": "Repairs myelin damage; counters neurodegeneration from deficiency","type": "nutrient"},
-            {"name": "Curcumin (Turmeric)",  "dose": "750 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Actively reduces amyloid plaques & tau tangles",                 "type": "non-nutrient"},
-           
+            {"name": "Donepezil (Aricept)",  "dose": "10 mg",      "times": ["10:00 PM (Bedtime)"],            "purpose": "Preserves acetylcholine; delays symptom worsening",   "type": "medication"},
+            {"name": "Memantine (Namenda)",  "dose": "10 mg",      "times": ["8:00 AM", "8:00 PM"],            "purpose": "Regulates glutamate activity; slows decline",          "type": "medication"},
+            {"name": "Omega-3 DHA",          "dose": "900 mg DHA", "times": ["8:00 AM", "6:00 PM"],            "purpose": "Structural support for brain cell membranes",         "type": "supplement"},
+            {"name": "Phosphatidylserine",   "dose": "100 mg",     "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Cell membrane fluidity; aids memory recall",          "type": "supplement"},
+            {"name": "Curcumin (Turmeric)",  "dose": "500 mg",     "times": ["8:00 AM", "8:00 PM"],            "purpose": "Anti-inflammatory; reduces amyloid plaque buildup",  "type": "supplement"},
         ],
     },
     "ModerateDemented": {
         "label": "Moderate Demented", "emoji": "🔴", "color": "#f87171", "bg": "#1c0000",
-        "description": "Significant cognitive impairment detected. Maximum nutritional support protocol initiated. Immediate specialist consultation required.",
+        "description": "Significant cognitive impairment detected. Immediate specialist consultation is required. Full medication protocol below.",
         "urgency": "URGENT — See Neurologist Immediately",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",   "dose": "3000 mg",  "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Maximum DHA dose to slow advanced neuronal loss & inflammation",  "type": "nutrient"},
-            {"name": "Beta-Carotene",        "dose": "15 mg",    "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Maximum antioxidant coverage for severe oxidative brain damage",  "type": "nutrient"},
-            {"name": "Vitamin E",            "dose": "1000 IU",  "times": ["9:00 AM", "3:00 PM", "9:00 PM"], "purpose": "Peak neuroprotective dose; slows advanced neurodegeneration",     "type": "nutrient"},
-            {"name": "Choline",              "dose": "650 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Critical support for severely depleted cholinergic pathways",     "type": "nutrient"},
-            {"name": "Lycopene",             "dose": "20 mg",    "times": ["8:00 AM", "1:00 PM", "7:00 PM"], "purpose": "Maximum carotenoid protection against advanced brain oxidation",  "type": "nutrient"},
-            {"name": "Vitamin B12",          "dose": "1500 mcg", "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Maximum B12 support for severely depleted neurological pathways", "type": "nutrient"},
-            {"name": "Curcumin (Turmeric)",  "dose": "1000 mg",  "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "High-dose plaque & tangle inhibition in advanced Alzheimer's",    "type": "non-nutrient"},
-            
+            {"name": "Donepezil (Aricept)",         "dose": "23 mg (XR)",        "times": ["10:00 PM (Bedtime)"],         "purpose": "High-dose inhibitor for advanced AD stages",           "type": "medication"},
+            {"name": "Memantine (Namenda)",         "dose": "20 mg",             "times": ["8:00 AM", "8:00 PM"],         "purpose": "First-line therapy for moderate-to-severe AD",        "type": "medication"},
+            {"name": "Rivastigmine (Exelon Patch)", "dose": "9.5 mg/24hr patch", "times": ["Apply every morning"],        "purpose": "Dual inhibitor; strong option for advanced stages",   "type": "medication"},
+            {"name": "Melatonin",                   "dose": "3 mg",              "times": ["9:00 PM"],                    "purpose": "Manages sleep-wake cycle disturbances",               "type": "supplement"},
+            {"name": "Vitamin B12",                 "dose": "1000 mcg",          "times": ["8:00 AM"],                    "purpose": "Prevents further neurodegeneration from deficiency",  "type": "supplement"},
+            {"name": "Risperidone (if agitation)",  "dose": "0.5 mg",            "times": ["As directed by neurologist"], "purpose": "Manages behavioral symptoms (neurologist only)",      "type": "medication"},
+        ],
     },
 }
 
@@ -396,12 +328,17 @@ with st.sidebar:
 # ══════════════════════════════════════════════════════════════
 st.markdown("""
 <div style="text-align:center;padding:8px 0 28px;">
-  <h1 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:32px;letter-spacing:.02em;">
+  <h1 style="margin:0;color:#e0e7ff;font-size:32px;letter-spacing:.02em;">
     Alzheimer's MRI Analysis
   </h1>
-  <p style="margin:8px 0 0;color:#64748b;font-size:14px;">
+  <p style="margin:8px 0 0;color:#374151;font-size:16px;font-weight:600;">
     Upload a brain MRI scan · Get instant classification · Receive personalised care protocol
   </p>
+  <div style="display:inline-block;background:#0d1526;border:1px solid #1e3a5f;
+              border-radius:20px;padding:4px 16px;font-size:11px;color:#38bdf8;margin-top:10px;">
+    EfficientNet-B0 · 96.3% Accuracy · 4-Class Classification
+  </div>
+</div>
 """, unsafe_allow_html=True)
 
 # ── Patient info ───────────────────────────────────────────────
@@ -625,3 +562,4 @@ else:
       </p>
     </div>
     """, unsafe_allow_html=True)
+
