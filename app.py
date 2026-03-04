@@ -603,18 +603,6 @@ if uploaded:
             </div>
             """, unsafe_allow_html=True)
 
-    # ── Disclaimer ─────────────────────────────────────────────
-    st.markdown("""
-    <div style="background:rgba(239,68,68,.05);border:1px solid #7f1d1d;border-radius:10px;
-                padding:12px 18px;margin-top:8px;">
-      <p style="margin:0;color:#f87171;font-size:12px;line-height:1.7;">
-        ⚕ <strong>Medical Disclaimer:</strong> All recommendations are AI-generated for informational
-        purposes only. They do not constitute medical advice. Always consult a qualified neurologist
-        or healthcare provider before starting, stopping, or modifying any medication or supplement.
-      </p>
-    </div>
-    """, unsafe_allow_html=True)
-
     # ── Email Section ──────────────────────────────────────────
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""<hr style="border-color:#1e293b;margin:8px 0 24px;">""", unsafe_allow_html=True)
@@ -623,7 +611,7 @@ if uploaded:
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
       <span style="font-size:22px;">📧</span>
       <div>
-        <h3 style="margin:0;color:#e2e8f0;font-size:17px;font-family:'DM Serif Display',serif;">
+        <h3 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:17px;font-family:'DM Serif Display',serif;">
           Send Prescription Email Alert
         </h3>
         <p style="margin:3px 0 0;color:#475569;font-size:12px;">
