@@ -559,13 +559,13 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # Prescription items
+# Prescription items
 for item in data["supplements"]:
-    # type coloring
     tc       = data["color"] if item["type"] == "nutrient" else "#a78bfa"
     icon     = "💊" if item["type"] == "nutrient" else "🌿"
     badge_bg = "#0d1e38" if item["type"] == "nutrient" else "#1a0a44"
 
-    # schedule as a vertical list
+    # schedule list
     sched_html = "".join(
         [f"<li>{day}: {', '.join(times)}</li>" for day, times in item["schedule"].items()]
     )
