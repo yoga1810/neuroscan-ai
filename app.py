@@ -329,12 +329,13 @@ with st.sidebar:
 # ══════════════════════════════════════════════════════════════
 st.markdown("""
 <div style="text-align:center;padding:8px 0 28px;">
-  <h1 style="margin:0;color:#00008B !important;font-size:32px;letter-spacing:.02em;">
+  <h1 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:32px;letter-spacing:.02em;">
     Alzheimer's MRI Analysis
   </h1>
-</div>
+  <p style="margin:8px 0 0;color:#64748b;font-size:14px;">
+    Upload a brain MRI scan · Get instant classification · Receive personalised care protocol
+  </p>
 """, unsafe_allow_html=True)
-
 
 
 # ── Patient info ───────────────────────────────────────────────
