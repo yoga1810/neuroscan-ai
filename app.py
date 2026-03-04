@@ -546,7 +546,7 @@ if uploaded:
         """, unsafe_allow_html=True)
 
         # Prescription header
-st.markdown(f"""
+        st.markdown(f"""
         <div style="display:flex;align-items:center;gap:8px;padding-bottom:12px;
                     border-bottom:1px solid {data['color']}33;margin-bottom:14px;">
           <span style="font-size:16px;">💊</span>
