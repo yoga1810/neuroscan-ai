@@ -21,13 +21,13 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-html, body, [class*="css"] {
+html, body, [class*="css"], .css-18e3th9, .css-1d391kg {  /* include common Streamlit container classes */
     font-family: 'DM Sans', sans-serif;
-    background-color: #ffffff;      /* white page background */
-    color: #000000;                 /* dark text for contrast */
-    font-weight: 600;              /* make regular text a bit bolder */
+    background-color: #0d1526 !important;      /* dark navy page background */
+    color: #ffffff !important;                 /* white text for contrast */
+    font-weight: 600;
 }
-.main { background-color: #ffffff; }
+.main, .block-container { background-color: transparent !important; }
 
 /* headings should be extra bold and dark */
 h1, h2, h3 {
@@ -39,13 +39,13 @@ h1, h2, h3 {
 h1, h2, h3 { font-family: 'DM Serif Display', serif !important; }
 
 section[data-testid="stSidebar"] {
-    background: #f3f4f6; /* light grey sidebar */
-    border-right: 1px solid #d1d5db;
+    background: #0d1526 !important; /* dark navy sidebar */
+    border-right: 1px solid #1e293b !important;
 }
-section[data-testid="stSidebar"] * { color: #1f2937 !important; }
+section[data-testid="stSidebar"] * { color: #ffffff !important; }
 
 div[data-testid="stFileUploader"] {
-    background: #ffffff;
+    background: #0d1526 !important;   /* dark navy for uploader to avoid white */
     border: 2px dashed #9ca3af;
     border-radius: 16px;
     padding: 12px;
@@ -67,13 +67,14 @@ div[data-testid="stFileUploader"]:hover { border-color: #6b7280; }
 .stButton > button:hover { opacity: .85 !important; }
 
 .stTextInput > div > div > input {
-    background: #ffffff !important;
-    border: 1px solid #d1d5db !important;
-    color: #1f2937 !important;
+    background: #0d1526 !important;   /* dark navy */
+    border: 1px solid #1e293b !important;
+    color: #ffffff !important;
     border-radius: 10px !important;
     font-family: 'DM Sans', sans-serif !important;
     font-weight: 600 !important;
 }
+.stTextInput > div > div > input:focus { border-color: #6366f1 !important; }
 .stTextInput > div > div > input:focus { border-color: #6366f1 !important; }
 
 footer { display: none !important; }
@@ -328,7 +329,7 @@ with st.sidebar:
 # ══════════════════════════════════════════════════════════════
 st.markdown("""
 <div style="text-align:center;padding:8px 0 28px;">
-  <h1 style="margin:0;color:#e0e7ff;font-size:32px;letter-spacing:.02em;">
+  <h1 style="margin:0;color:#fefae0;font-size:32px;letter-spacing:.02em;">
     Alzheimer's MRI Analysis
   </h1>
   <p style="margin:8px 0 0;color:#374151;font-size:16px;font-weight:600;">
@@ -562,4 +563,3 @@ else:
       </p>
     </div>
     """, unsafe_allow_html=True)
-
