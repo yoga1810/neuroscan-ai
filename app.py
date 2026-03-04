@@ -563,11 +563,8 @@ if uploaded:
         <div style="display:flex;align-items:center;gap:8px;padding-bottom:12px;
                     border-bottom:1px solid {data['color']}33;margin-bottom:14px;">
           <span style="font-size:16px;">💊</span>
-          <h3 style="margin:0;color:{data['color']};font-size:14px;text-transform:uppercase;
-                     letter-spacing:.1em;font-family:'DM Sans',sans-serif;">Prescribed Protocol</h3>
-          <span style="margin-left:auto;font-size:11px;color:#475569;font-style:italic;">
-            Consult physician before starting
-          </span>
+          <h3 style="margin:0;color:{data['color']} !important;font-size:14px;text-transform:uppercase;
+                     letter-spacing:.1em;font-family:'DM Sans',sans-serif;-webkit-text-fill-color:{data['color']};">Prescribed Protocol</h3>
         </div>
         """, unsafe_allow_html=True)
 
