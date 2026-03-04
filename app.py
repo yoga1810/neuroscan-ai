@@ -557,18 +557,17 @@ if uploaded:
           </span>
         </div>
         """, unsafe_allow_html=True)
-
-        # Prescription item
-       for item in data["supplements"]:
-           tc       = data["color"] if item["type"] == "nutrient" else "#a78bfa"
-           lb       = data["color"] if item["type"] == "nutrient" else "#6366f1"
-           icon     = "💊" if item["type"] == "nutrient" else "🌿"
-           badge_bg = "#0d1e38" if item["type"] == "nutrient" else "#1a0a44"
+        for item in data["supplements"]:
+    # type coloring
+    tc       = data["color"] if item["type"] == "nutrient" else "#a78bfa"
+    lb       = data["color"] if item["type"] == "nutrient" else "#6366f1"
+    icon     = "💊" if item["type"] == "nutrient" else "🌿"
+    badge_bg = "#0d1e38" if item["type"] == "nutrient" else "#1a0a44"
 
     # flatten schedule dictionary into a string
-           sched = " &nbsp;|&nbsp; ".join(
-           [f"{day}: {', '.join(times)}" for day, times in item["schedule"].items()]
-           )
+    sched = " &nbsp;|&nbsp; ".join(
+        [f"{day}: {', '.join(times)}" for day, times in item["schedule"].items()]
+    )
 
     st.markdown(f"""
     <div style="background:#0d1526;border:1px solid #1e293b;border-left:3px solid {lb};
@@ -597,6 +596,8 @@ if uploaded:
       </div>
     </div>
     """, unsafe_allow_html=True)
+
+       
 
 
     # ── Disclaimer ─────────────────────────────────────────────
