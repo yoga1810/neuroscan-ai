@@ -214,7 +214,7 @@ def build_email_html(name, age, stage_key, conf, all_probs):
     for item in data["supplements"]:
         tc   = c if item["type"] == "medication" else "#a78bfa"
         icon = "💊" if item["type"] == "medication" else "🌿"
-        sched = "<br>".join([f"🕐 {t}" for t in item["times"]])
+        sched = "<br>".join([f"{d}: {', '.join(item['schedule'][d])}" for d in ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"] if d in item["schedule"]])
         rows += f"""<tr>
           <td style="padding:10px 14px;border-bottom:1px solid #1e293b;">
             <strong style="color:{tc};font-size:13px;">{icon} {item['name']}</strong>
