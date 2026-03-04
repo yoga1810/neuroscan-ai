@@ -21,15 +21,14 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-html, body, [class*="css"], .css-18e3th9, .css-1d391kg {  /* include common Streamlit container classes */
+html, body, [class*="css"], .css-18e3th9, .css-1d391kg {
     font-family: 'DM Sans', sans-serif;
-    background-color: #0d1526 !important;      /* dark navy page background */
-    color: #ffffff !important;                 /* white text for contrast */
+    background-color: #0d1526 !important;
+    color: #ffffff !important;
     font-weight: 600;
 }
 .main, .block-container { background-color: transparent !important; }
 
-/* headings should be extra bold and dark */
 h1, h2, h3 {
     font-family: 'DM Serif Display', serif !important;
     font-weight: 700 !important;
@@ -39,13 +38,13 @@ h1, h2, h3 {
 h1, h2, h3 { font-family: 'DM Serif Display', serif !important; }
 
 section[data-testid="stSidebar"] {
-    background: #0d1526 !important; /* dark navy sidebar */
+    background: #0d1526 !important;
     border-right: 1px solid #1e293b !important;
 }
 section[data-testid="stSidebar"] * { color: #ffffff !important; }
 
 div[data-testid="stFileUploader"] {
-    background: #0d1526 !important;   /* dark navy for uploader to avoid white */
+    background: #0d1526 !important;
     border: 2px dashed #9ca3af;
     border-radius: 16px;
     padding: 12px;
@@ -57,7 +56,7 @@ div[data-testid="stFileUploader"]:hover { border-color: #6b7280; }
     background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
     border: none !important;
     color: white !important;
-    font-weight: 700 !important; /* extra bold */
+    font-weight: 700 !important;
     border-radius: 10px !important;
     padding: 0.6rem 1.5rem !important;
     font-family: 'DM Sans', sans-serif !important;
@@ -67,14 +66,13 @@ div[data-testid="stFileUploader"]:hover { border-color: #6b7280; }
 .stButton > button:hover { opacity: .85 !important; }
 
 .stTextInput > div > div > input {
-    background: #0d1526 !important;   /* dark navy */
+    background: #0d1526 !important;
     border: 1px solid #1e293b !important;
     color: #ffffff !important;
     border-radius: 10px !important;
     font-family: 'DM Sans', sans-serif !important;
     font-weight: 600 !important;
 }
-.stTextInput > div > div > input:focus { border-color: #6366f1 !important; }
 .stTextInput > div > div > input:focus { border-color: #6366f1 !important; }
 
 footer { display: none !important; }
@@ -96,53 +94,125 @@ STAGE_DATA = {
         "description": "No signs of Alzheimer's detected. Brain function appears normal. Preventive supplementation is recommended to maintain cognitive health.",
         "urgency": "Preventive Care",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",  "dose": "1000 mg",  "times": ["8:00 AM", "8:00 PM"], "purpose": "Cognitive longevity & brain cell membranes",  "type": "supplement"},
-            {"name": "Vitamin D3",          "dose": "2000 IU",  "times": ["9:00 AM"],             "purpose": "Neuroprotection & mood regulation",           "type": "supplement"},
-            {"name": "B-Complex Vitamin",   "dose": "1 tablet", "times": ["8:00 AM"],             "purpose": "Reduces homocysteine, supports nerve health",  "type": "supplement"},
+            {"name": "Omega-3 (Fish Oil)", "dose": "500 mg",  "times": ["8:00 AM"],  "purpose": "Supports brain cell membrane integrity & cognitive longevity",    "type": "nutrient"},
+            {"name": "Beta-Carotene",      "dose": "3 mg",    "times": ["8:00 AM"],  "purpose": "Antioxidant precursor to Vitamin A; protects neurons",            "type": "nutrient"},
+            {"name": "Vitamin E",          "dose": "200 IU",  "times": ["9:00 AM"],  "purpose": "Neuroprotective antioxidant; protects cell membranes",            "type": "nutrient"},
+            {"name": "Choline",            "dose": "250 mg",  "times": ["8:00 AM"],  "purpose": "Precursor to acetylcholine; supports memory & learning",          "type": "nutrient"},
+            {"name": "Vitamin B12",        "dose": "500 mcg", "times": ["8:00 AM"],  "purpose": "Reduces homocysteine; supports myelin sheath & nerve conduction",  "type": "nutrient"},
         ],
     },
     "VeryMildDemented": {
         "label": "Very Mild Demented", "emoji": "🟡", "color": "#facc15", "bg": "#1c1400",
-        "description": "Very early-stage cognitive changes detected. Lifestyle modifications and early medical intervention can significantly slow progression.",
+        "description": "Very early-stage cognitive changes detected. Lifestyle modifications and increased nutritional support can significantly slow progression.",
         "urgency": "Early Intervention Recommended",
         "supplements": [
-            {"name": "Donepezil (Aricept)",  "dose": "5 mg",    "times": ["10:00 PM (Bedtime)"], "purpose": "Cholinesterase inhibitor – preserves memory function",  "type": "medication"},
-            {"name": "Vitamin E",            "dose": "400 IU",  "times": ["8:00 AM"],            "purpose": "Antioxidant – protects neurons from oxidative stress",  "type": "supplement"},
-            {"name": "Ginkgo Biloba",        "dose": "120 mg",  "times": ["8:00 AM", "1:00 PM"], "purpose": "Improves cerebral blood flow",                         "type": "supplement"},
-            {"name": "Memantine (low dose)", "dose": "5 mg",    "times": ["8:00 AM"],            "purpose": "NMDA modulator – slows disease progression",           "type": "medication"},
+            {"name": "Omega-3 (Fish Oil)", "dose": "1000 mg", "times": ["8:00 AM", "8:00 PM"], "purpose": "Reduces neuroinflammation; supports synaptic plasticity",       "type": "nutrient"},
+            {"name": "Vitamin E",          "dose": "400 IU",  "times": ["9:00 AM"],             "purpose": "Slows oxidative damage to neurons in early-stage decline",      "type": "nutrient"},
+            {"name": "Choline",            "dose": "375 mg",  "times": ["8:00 AM", "1:00 PM"], "purpose": "Boosts acetylcholine production for memory preservation",       "type": "nutrient"},
+            {"name": "Vitamin B12",        "dose": "750 mcg", "times": ["8:00 AM"],             "purpose": "Slows brain atrophy linked to B12 deficiency in early decline", "type": "nutrient"},
         ],
     },
     "MildDemented": {
         "label": "Mild Demented", "emoji": "🟠", "color": "#fb923c", "bg": "#1c0800",
-        "description": "Mild cognitive decline detected. A combination of medication and supplements is recommended alongside neurologist consultation.",
+        "description": "Mild cognitive decline detected. Intensified nutritional protocol recommended alongside neurologist consultation.",
         "urgency": "Medical Attention Required",
         "supplements": [
-            {"name": "Donepezil (Aricept)",  "dose": "10 mg",      "times": ["10:00 PM (Bedtime)"],            "purpose": "Preserves acetylcholine; delays symptom worsening",   "type": "medication"},
-            {"name": "Memantine (Namenda)",  "dose": "10 mg",      "times": ["8:00 AM", "8:00 PM"],            "purpose": "Regulates glutamate activity; slows decline",          "type": "medication"},
-            {"name": "Omega-3 DHA",          "dose": "900 mg DHA", "times": ["8:00 AM", "6:00 PM"],            "purpose": "Structural support for brain cell membranes",         "type": "supplement"},
-            {"name": "Phosphatidylserine",   "dose": "100 mg",     "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Cell membrane fluidity; aids memory recall",          "type": "supplement"},
-            {"name": "Curcumin (Turmeric)",  "dose": "500 mg",     "times": ["8:00 AM", "8:00 PM"],            "purpose": "Anti-inflammatory; reduces amyloid plaque buildup",  "type": "supplement"},
+            {"name": "Omega-3 (Fish Oil)", "dose": "2000 mg",  "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "DHA/EPA support for slowing grey matter loss & inflammation",      "type": "nutrient"},
+            {"name": "Vitamin E",          "dose": "800 IU",   "times": ["9:00 AM", "9:00 PM"],            "purpose": "High-dose neuroprotection against free radical damage",            "type": "nutrient"},
+            {"name": "Choline",            "dose": "500 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Supports declining cholinergic neurons; aids recall",              "type": "nutrient"},
+            {"name": "Vitamin B12",        "dose": "1000 mcg", "times": ["8:00 AM", "1:00 PM"],            "purpose": "Repairs myelin damage; counters neurodegeneration from deficiency", "type": "nutrient"},
         ],
     },
     "ModerateDemented": {
         "label": "Moderate Demented", "emoji": "🔴", "color": "#f87171", "bg": "#1c0000",
-        "description": "Significant cognitive impairment detected. Immediate specialist consultation is required. Full medication protocol below.",
+        "description": "Significant cognitive impairment detected. Maximum nutritional support protocol initiated. Immediate specialist consultation required.",
         "urgency": "URGENT — See Neurologist Immediately",
         "supplements": [
-            {"name": "Donepezil (Aricept)",         "dose": "23 mg (XR)",        "times": ["10:00 PM (Bedtime)"],         "purpose": "High-dose inhibitor for advanced AD stages",           "type": "medication"},
-            {"name": "Memantine (Namenda)",         "dose": "20 mg",             "times": ["8:00 AM", "8:00 PM"],         "purpose": "First-line therapy for moderate-to-severe AD",        "type": "medication"},
-            {"name": "Rivastigmine (Exelon Patch)", "dose": "9.5 mg/24hr patch", "times": ["Apply every morning"],        "purpose": "Dual inhibitor; strong option for advanced stages",   "type": "medication"},
-            {"name": "Melatonin",                   "dose": "3 mg",              "times": ["9:00 PM"],                    "purpose": "Manages sleep-wake cycle disturbances",               "type": "supplement"},
-            {"name": "Vitamin B12",                 "dose": "1000 mcg",          "times": ["8:00 AM"],                    "purpose": "Prevents further neurodegeneration from deficiency",  "type": "supplement"},
-            {"name": "Risperidone (if agitation)",  "dose": "0.5 mg",            "times": ["As directed by neurologist"], "purpose": "Manages behavioral symptoms (neurologist only)",      "type": "medication"},
+            {"name": "Omega-3 (Fish Oil)", "dose": "3000 mg",  "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Maximum DHA dose to slow advanced neuronal loss & inflammation",  "type": "nutrient"},
+            {"name": "Beta-Carotene",      "dose": "15 mg",    "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Maximum antioxidant coverage for severe oxidative brain damage",  "type": "nutrient"},
+            {"name": "Vitamin E",          "dose": "1000 IU",  "times": ["9:00 AM", "3:00 PM", "9:00 PM"], "purpose": "Peak neuroprotective dose; slows advanced neurodegeneration",     "type": "nutrient"},
+            {"name": "Choline",            "dose": "650 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Critical support for severely depleted cholinergic pathways",     "type": "nutrient"},
+            {"name": "Vitamin B12",        "dose": "1500 mcg", "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Maximum B12 support for severely depleted neurological pathways", "type": "nutrient"},
         ],
     },
 }
 
+# ── MRI Validation ─────────────────────────────────────────────
+def is_likely_mri(img: Image.Image) -> tuple:
+    """
+    Multi-heuristic check to determine if an image is likely a brain MRI scan.
+    Returns (is_valid: bool, reason: str, details: dict)
+    """
+    issues = []
+    details = {}
+
+    # Convert to numpy arrays for analysis
+    img_rgb  = img.convert("RGB")
+    img_gray = img.convert("L")
+    arr_rgb  = np.array(img_rgb, dtype=np.float32)
+    arr_gray = np.array(img_gray, dtype=np.float32)
+
+    total_pixels = arr_gray.size
+
+    # ── Check 1: Dark background ratio ──────────────────────────
+    # Brain MRIs have a large black/near-black background
+    dark_pixels = np.sum(arr_gray < 25)
+    dark_ratio  = dark_pixels / total_pixels
+    details["dark_ratio"] = dark_ratio
+    if dark_ratio < 0.20:
+        issues.append(f"insufficient dark background ({dark_ratio:.1%} < 20% expected for MRI)")
+
+    # ── Check 2: Colorfulness ────────────────────────────────────
+    # MRIs are grayscale; very colorful images are not MRIs
+    r = arr_rgb[:, :, 0]
+    g = arr_rgb[:, :, 1]
+    b = arr_rgb[:, :, 2]
+    rg_diff = np.std(r.astype(float) - g.astype(float))
+    gb_diff = np.std(g.astype(float) - b.astype(float))
+    color_score = rg_diff + gb_diff
+    details["color_score"] = color_score
+    if color_score > 25:
+        issues.append(f"image appears too colorful (score {color_score:.1f} > 25 expected for grayscale MRI)")
+
+    # ── Check 3: Grayscale channel similarity ────────────────────
+    # In a true grayscale image R ≈ G ≈ B
+    channel_diff = np.mean(np.abs(r - g)) + np.mean(np.abs(g - b))
+    details["channel_diff"] = channel_diff
+    if channel_diff > 15:
+        issues.append(f"channels differ too much ({channel_diff:.1f} > 15) — likely a color photo, not an MRI")
+
+    # ── Check 4: Brightness variance (texture check) ─────────────
+    # MRIs have a distinct bright oval (brain) on a dark field
+    # A paper/document would be mostly uniform bright
+    mean_brightness = np.mean(arr_gray)
+    std_brightness  = np.std(arr_gray)
+    details["mean_brightness"] = mean_brightness
+    details["std_brightness"]  = std_brightness
+
+    if mean_brightness > 200:
+        issues.append(f"image is too bright (mean {mean_brightness:.0f} > 200) — looks like a document or photo, not an MRI")
+
+    if std_brightness < 20:
+        issues.append(f"image has too little contrast (std {std_brightness:.1f} < 20) — MRIs have strong contrast between brain and background")
+
+    # ── Check 5: Bright region (brain) must exist ────────────────
+    # At least some pixels should be bright (the brain tissue)
+    bright_pixels = np.sum(arr_gray > 100)
+    bright_ratio  = bright_pixels / total_pixels
+    details["bright_ratio"] = bright_ratio
+    if bright_ratio < 0.05:
+        issues.append(f"too few bright pixels ({bright_ratio:.1%} < 5%) — no visible brain structure detected")
+    if bright_ratio > 0.80:
+        issues.append(f"too many bright pixels ({bright_ratio:.1%} > 80%) — likely a document or overexposed photo")
+
+    is_valid = len(issues) == 0
+    reason   = "; ".join(issues) if issues else "Image passed all MRI validation checks."
+    return is_valid, reason, details
+
+
 # ── Model loader ───────────────────────────────────────────────
 @st.cache_resource
 def load_model():
-    # Looks for model in same directory as app.py
     model_path = os.path.join(os.path.dirname(__file__), "alzheimer_model.keras")
     if not os.path.exists(model_path):
         st.error("❌ Model file 'alzheimer_model.keras' not found. Place it in the same folder as app.py")
@@ -358,18 +428,80 @@ uploaded = st.file_uploader(
 #  PREDICTION + RESULTS
 # ══════════════════════════════════════════════════════════════
 if uploaded:
+    image = Image.open(uploaded)
+
+    # ── MRI Validation ─────────────────────────────────────────
+    with st.spinner("🔎 Validating image..."):
+        is_valid, reason, details = is_likely_mri(image)
+
+    if not is_valid:
+        # Show the uploaded image so user can see what was rejected
+        col_img, col_msg = st.columns([1, 2])
+        with col_img:
+            st.image(image, caption="Uploaded Image", use_container_width=True)
+        with col_msg:
+            st.markdown(f"""
+            <div style="background:rgba(239,68,68,.08);border:1.5px solid #ef4444;border-radius:14px;
+                        padding:22px;margin-top:8px;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+                <span style="font-size:28px;">🚫</span>
+                <div>
+                  <div style="color:#f87171;font-size:17px;font-weight:700;">Invalid Image Detected</div>
+                  <div style="color:#94a3b8;font-size:12px;margin-top:2px;">This does not appear to be a brain MRI scan</div>
+                </div>
+              </div>
+              <p style="color:#94a3b8;font-size:13px;margin:0 0 14px;line-height:1.7;">
+                The uploaded image failed one or more MRI validation checks:
+              </p>
+              <div style="background:#1c0000;border:1px solid #7f1d1d;border-radius:8px;padding:12px;margin-bottom:14px;">
+                <p style="color:#fca5a5;font-size:12px;margin:0;line-height:1.8;">⚠️ {reason}</p>
+              </div>
+              <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:8px;padding:12px;">
+                <p style="color:#38bdf8;font-size:12px;font-weight:600;margin:0 0 6px;">
+                  ✅ What a valid MRI scan looks like:
+                </p>
+                <ul style="color:#64748b;font-size:12px;margin:0;padding-left:16px;line-height:2;">
+                  <li>Grayscale image with a large dark (black) background</li>
+                  <li>Bright oval/circular brain structure in the center</li>
+                  <li>No color — MRI scans are always black & white</li>
+                  <li>High contrast between brain tissue and background</li>
+                </ul>
+              </div>
+            </div>
+            """, unsafe_allow_html=True)
+        st.stop()
+
+    # ── Run model ──────────────────────────────────────────────
     model  = load_model()
-    image  = Image.open(uploaded)
     arr    = preprocess(image)
 
     with st.spinner("🔍 Analyzing MRI scan..."):
         probs = model.predict(arr, verbose=0)[0]
 
-    idx        = int(np.argmax(probs))
-    label      = LABEL_MAP[idx]
-    conf       = float(probs[idx]) * 100
-    data       = STAGE_DATA[label]
-    all_probs  = {LABEL_MAP[i]: float(probs[i]) * 100 for i in range(4)}
+    idx       = int(np.argmax(probs))
+    label     = LABEL_MAP[idx]
+    conf      = float(probs[idx]) * 100
+    data      = STAGE_DATA[label]
+    all_probs = {LABEL_MAP[i]: float(probs[i]) * 100 for i in range(4)}
+
+    # ── Low-confidence warning ─────────────────────────────────
+    LOW_CONF_THRESHOLD = 55.0
+    if conf < LOW_CONF_THRESHOLD:
+        st.markdown(f"""
+        <div style="background:rgba(251,146,60,.08);border:1.5px solid #f97316;border-radius:12px;
+                    padding:14px 18px;margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:20px;">⚠️</span>
+            <div>
+              <strong style="color:#fb923c;font-size:13px;">Low Confidence Result ({conf:.1f}%)</strong>
+              <p style="color:#94a3b8;font-size:12px;margin:4px 0 0;line-height:1.6;">
+                The model is not confident in this classification. The image may not be a standard
+                Alzheimer's MRI scan, or the scan quality may be poor. Please verify with a qualified neurologist.
+              </p>
+            </div>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
     left, right = st.columns([1, 2])
@@ -380,9 +512,9 @@ if uploaded:
 
         st.markdown("**Confidence Breakdown**")
         for k in LABEL_MAP.values():
-            prob     = all_probs[k]
-            bc       = STAGE_DATA[k]["color"]
-            is_pred  = k == label
+            prob    = all_probs[k]
+            bc      = STAGE_DATA[k]["color"]
+            is_pred = k == label
             st.markdown(f"""
             <div style="margin-bottom:9px;">
               <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;">
@@ -406,7 +538,6 @@ if uploaded:
             <strong>Patient:</strong> {patient_name}{f" &nbsp;·&nbsp; Age: {patient_age}" if patient_age else ""}
         </p>""" if patient_name else ""
 
-        # Diagnosis card
         st.markdown(f"""
         <div style="background:linear-gradient(135deg,{data['color']}0d,{data['bg']});
                     border:1.5px solid {data['color']}55;border-radius:14px;padding:20px;
@@ -428,7 +559,6 @@ if uploaded:
         </div>
         """, unsafe_allow_html=True)
 
-        # Prescription header
         st.markdown(f"""
         <div style="display:flex;align-items:center;gap:8px;padding-bottom:12px;
                     border-bottom:1px solid {data['color']}33;margin-bottom:14px;">
@@ -441,7 +571,6 @@ if uploaded:
         </div>
         """, unsafe_allow_html=True)
 
-        # Prescription items
         for item in data["supplements"]:
             tc       = data["color"] if item["type"] == "medication" else "#a78bfa"
             lb       = data["color"] if item["type"] == "medication" else "#6366f1"
