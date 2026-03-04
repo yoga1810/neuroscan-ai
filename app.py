@@ -7,6 +7,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import datetime
 import os
+import requests
+import json
 
 # ── Page config ────────────────────────────────────────────────
 st.set_page_config(
@@ -74,6 +76,28 @@ div[data-testid="stFileUploader"]:hover { border-color: #6b7280; }
     font-weight: 600 !important;
 }
 .stTextInput > div > div > input:focus { border-color: #6366f1 !important; }
+
+
+/* ── Chatbot widget ── */
+.chat-bubble-user {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 16px 16px 4px 16px;
+    margin: 6px 0 6px 40px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+.chat-bubble-ai {
+    background: #0f1f3d;
+    border: 1px solid #1e3a5f;
+    color: #e2e8f0;
+    padding: 10px 14px;
+    border-radius: 16px 16px 16px 4px;
+    margin: 6px 40px 6px 0;
+    font-size: 13px;
+    line-height: 1.6;
+}
 
 footer { display: none !important; }
 #MainMenu { visibility: hidden; }
@@ -351,6 +375,67 @@ def send_email(sender, password, recipient, subject, html):
         return False, f"❌ Error: {str(e)}"
 
 
+
+# ── Chatbot helper ─────────────────────────────────────────────
+def ask_neuroscan_ai(messages: list, stage_context: str = "", api_key: str = "") -> str:
+    """Call Gemini API for the NeuroScan chatbot."""
+    # Try Streamlit secrets first, then sidebar input, then env variable
+    if not api_key:
+        try:
+            api_key = st.secrets.get("GEMINI_API_KEY", "")
+        except:
+            pass
+    if not api_key:
+        api_key = os.environ.get("GEMINI_API_KEY", "")
+    if not api_key:
+        return "⚠️ Please enter your Gemini API key in the sidebar to use the chatbot."
+
+    system_prompt = f"""You are NeuroScan AI Assistant, a compassionate and knowledgeable medical support chatbot embedded in a brain MRI analysis app for Alzheimer's disease detection.
+
+Your role is to:
+- Answer questions about Alzheimer's disease, dementia stages, symptoms, and caregiving
+- Explain the nutrients and supplements recommended in the app
+- Provide lifestyle, diet, and cognitive exercise advice tailored to the patient's stage
+- Offer emotional support and guidance to caregivers and family members
+- Explain MRI scan results in plain, easy-to-understand language
+
+Current patient context: {stage_context if stage_context else "No scan uploaded yet."}
+
+Guidelines:
+- Always be warm, empathetic, and clear
+- Use simple language — avoid heavy medical jargon unless asked
+- Never provide specific medical diagnoses or replace a neurologist
+- Keep responses concise (3-5 sentences) unless a detailed explanation is requested
+- If asked something outside your scope, gently redirect to a healthcare professional"""
+
+    # Build Gemini-format contents from message history
+    gemini_contents = []
+    for msg in messages:
+        role = "user" if msg["role"] == "user" else "model"
+        gemini_contents.append({"role": role, "parts": [{"text": msg["content"]}]})
+
+    payload = {
+        "system_instruction": {"parts": [{"text": system_prompt}]},
+        "contents": gemini_contents,
+        "generationConfig": {"maxOutputTokens": 1000, "temperature": 0.7},
+    }
+
+    try:
+        resp = requests.post(
+            f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}",
+            headers={"Content-Type": "application/json"},
+            json=payload,
+            timeout=30,
+        )
+        data = resp.json()
+        if resp.status_code == 200:
+            return data["candidates"][0]["content"]["parts"][0]["text"]
+        else:
+            return f"⚠️ API error {resp.status_code}: {data.get('error', {}).get('message', 'Unknown error')}"
+    except Exception as e:
+        return f"⚠️ Connection error: {str(e)}"
+
+
 # ══════════════════════════════════════════════════════════════
 #  SIDEBAR
 # ══════════════════════════════════════════════════════════════
@@ -396,6 +481,13 @@ with st.sidebar:
       </p>
     </div>
     """, unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.markdown("**🤖 AI Chatbot**")
+    st.markdown("""
+    <p style="font-size:11px;color:#4ade80 !important;margin-top:4px;">✅ AI Assistant is active</p>
+    """, unsafe_allow_html=True)
+    gemini_api_key = ""
 
 
 # ══════════════════════════════════════════════════════════════
@@ -662,6 +754,120 @@ if uploaded:
       </ol>
     </div>
     """, unsafe_allow_html=True)
+
+    # ── AI Chatbot Section ─────────────────────────────────────
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("""<hr style="border-color:#1e293b;margin:8px 0 24px;">""", unsafe_allow_html=True)
+
+    # Build context string from current scan result
+    stage_context = f"Patient stage: {data['label']} (Confidence: {conf:.1f}%). Urgency: {data['urgency']}."
+    if patient_name:
+        stage_context += f" Patient name: {patient_name}."
+    if patient_age:
+        stage_context += f" Age: {patient_age}."
+
+    st.markdown(f"""
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+      <span style="font-size:22px;">🤖</span>
+      <div>
+        <h3 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;
+                   -webkit-text-fill-color:transparent;background-clip:text;font-size:17px;
+                   font-family:'DM Serif Display',serif;">NeuroScan AI Assistant</h3>
+        <p style="margin:3px 0 0;color:#475569;font-size:12px;">
+          Ask anything about the diagnosis, nutrients, caregiving, or lifestyle advice
+        </p>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Suggested questions
+    st.markdown(f"""
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+      <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:20px;
+                  padding:5px 12px;font-size:11px;color:#38bdf8;cursor:pointer;">
+        💊 What do these nutrients do?
+      </div>
+      <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:20px;
+                  padding:5px 12px;font-size:11px;color:#38bdf8;cursor:pointer;">
+        🍎 What foods should the patient eat?
+      </div>
+      <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:20px;
+                  padding:5px 12px;font-size:11px;color:#38bdf8;cursor:pointer;">
+        🧠 What does this stage mean day-to-day?
+      </div>
+      <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:20px;
+                  padding:5px 12px;font-size:11px;color:#38bdf8;cursor:pointer;">
+        👨‍👩‍👧 How can I help as a caregiver?
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Init chat history in session state
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = []
+
+    # Chat display container
+    chat_container = st.container()
+    with chat_container:
+        if not st.session_state.chat_history:
+            st.markdown(f"""
+            <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:14px;
+                        padding:18px;text-align:center;color:#475569;">
+              <div style="font-size:32px;margin-bottom:8px;">🧬</div>
+              <p style="font-size:13px;margin:0;color:#64748b;">
+                Hi! I'm your NeuroScan AI Assistant. I can see the scan result is
+                <strong style="color:{data['color']};">{data['label']}</strong>.
+                Ask me anything about the diagnosis, recommended nutrients, or how to support the patient.
+              </p>
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            for msg in st.session_state.chat_history:
+                if msg["role"] == "user":
+                    st.markdown(f"""
+                    <div style="display:flex;justify-content:flex-end;margin:6px 0;">
+                      <div style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;
+                                  padding:10px 14px;border-radius:16px 16px 4px 16px;
+                                  max-width:75%;font-size:13px;line-height:1.6;">
+                        {msg["content"]}
+                      </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.markdown(f"""
+                    <div style="display:flex;justify-content:flex-start;margin:6px 0;">
+                      <div style="background:#0f1f3d;border:1px solid #1e3a5f;color:#e2e8f0;
+                                  padding:10px 14px;border-radius:16px 16px 16px 4px;
+                                  max-width:80%;font-size:13px;line-height:1.6;">
+                        <span style="font-size:10px;color:#6366f1;font-weight:600;
+                                     display:block;margin-bottom:4px;">🤖 NeuroScan AI</span>
+                        {msg["content"]}
+                      </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+
+    # Input row
+    col_input, col_send, col_clear = st.columns([6, 1, 1])
+    with col_input:
+        user_input = st.text_input(
+            "chat_input", label_visibility="collapsed",
+            placeholder="Ask about the diagnosis, nutrients, caregiving tips...",
+            key="chat_input_field"
+        )
+    with col_send:
+        send_clicked = st.button("Send", use_container_width=True, key="chat_send")
+    with col_clear:
+        if st.button("Clear", use_container_width=True, key="chat_clear"):
+            st.session_state.chat_history = []
+            st.rerun()
+
+    if send_clicked and user_input.strip():
+        st.session_state.chat_history.append({"role": "user", "content": user_input.strip()})
+        with st.spinner("🤖 Thinking..."):
+            reply = ask_neuroscan_ai(st.session_state.chat_history, stage_context, gemini_api_key)
+        st.session_state.chat_history.append({"role": "assistant", "content": reply})
+        st.rerun()
+
 
 else:
     # ── Empty state ────────────────────────────────────────────
