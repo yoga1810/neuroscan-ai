@@ -329,18 +329,16 @@ with st.sidebar:
 # ══════════════════════════════════════════════════════════════
 st.markdown("""
 <div style="text-align:center;padding:8px 0 28px;">
-  <h1 style="margin:0;color:#fefae0;font-size:32px;letter-spacing:.02em;">
+  <h1 style="margin:0;color:#00008B;font-size:32px;letter-spacing:.02em;">
     Alzheimer's MRI Analysis
   </h1>
   <p style="margin:8px 0 0;color:#374151;font-size:16px;font-weight:600;">
     Upload a brain MRI scan · Get instant classification · Receive personalised care protocol
   </p>
-  <div style="display:inline-block;background:#0d1526;border:1px solid #1e3a5f;
-              border-radius:20px;padding:4px 16px;font-size:11px;color:#38bdf8;margin-top:10px;">
-    EfficientNet-B0 · 96.3% Accuracy · 4-Class Classification
-  </div>
+  
 </div>
 """, unsafe_allow_html=True)
+
 
 # ── Patient info ───────────────────────────────────────────────
 pc1, pc2 = st.columns([3, 1])
