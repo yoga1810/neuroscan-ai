@@ -9,6 +9,7 @@ from datetime import datetime
 import os
 import requests
 import json
+import pandas as pd
 
 # ── Page config ────────────────────────────────────────────────
 st.set_page_config(
@@ -439,6 +440,75 @@ Guidelines:
         return f"⚠️ Connection error: {str(e)}"
 
 
+
+# ── Symptom Trend Analysis ─────────────────────────────────────
+def analyze_symptom_trends(logs: list, api_key: str = "") -> str:
+    """Send symptom logs to Groq for AI trend analysis."""
+    if not api_key:
+        try:
+            api_key = st.secrets.get("GROQ_API_KEY", "")
+        except:
+            pass
+    if not api_key:
+        api_key = os.environ.get("GROQ_API_KEY", "")
+    if not api_key:
+        return "⚠️ GROQ_API_KEY not found. Please add it to Streamlit Secrets."
+
+    log_text = ""
+    for i, log in enumerate(logs):
+        log_text += f"""
+Entry {i+1} — Date: {log['date']}
+  Memory Loss: {log['memory']}/10
+  Confusion: {log['confusion']}/10
+  Mood Changes: {log['mood']}/10
+  Daily Tasks Difficulty: {log['tasks']}/10
+  Sleep Quality: {log['sleep']}/10
+  Overall Score: {log['overall']}/10
+  Notes: {log.get('notes', 'None')}
+"""
+
+    system_prompt = """You are a neurological symptom trend analyst AI embedded in the NeuroScan Alzheimer's detection app.
+You analyze daily symptom logs from patients or caregivers to detect cognitive decline patterns.
+
+Your analysis should include:
+1. TREND SUMMARY — Is the patient improving, stable, or declining?
+2. CONCERNING PATTERNS — Which symptoms are worsening fastest?
+3. RISK FLAG — Low / Moderate / High / Critical based on trend
+4. RECOMMENDED NEXT STEPS — Specific actionable advice
+5. CAREGIVER ALERT — Any urgent flags for the caregiver
+
+Be concise, empathetic, and clear. Use plain language. Format with clear sections."""
+
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": f"Please analyze these symptom logs and provide a full trend report:\n{log_text}"}
+    ]
+
+    payload = {
+        "model": "llama-3.3-70b-versatile",
+        "messages": messages,
+        "max_tokens": 1200,
+        "temperature": 0.4,
+    }
+
+    try:
+        resp = requests.post(
+            "https://api.groq.com/openai/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
+            json=payload,
+            timeout=30,
+        )
+        data = resp.json()
+        if resp.status_code == 200:
+            return data["choices"][0]["message"]["content"]
+        else:
+            return f"⚠️ API error {resp.status_code}: {data.get('error', {}).get('message', 'Unknown error')}"
+    except Exception as e:
+        return f"⚠️ Connection error: {str(e)}"
+
 # ══════════════════════════════════════════════════════════════
 #  SIDEBAR
 # ══════════════════════════════════════════════════════════════
@@ -507,8 +577,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+# ── Tabs ───────────────────────────────────────────────────────
+tab1, tab2 = st.tabs(["🧠 MRI Analysis", "📊 Symptom Tracker"])
+
+with tab1:
 # ── Patient info ───────────────────────────────────────────────
-pc1, pc2 = st.columns([3, 1])
+ pc1, pc2 = st.columns([3, 1])
 with pc1:
     patient_name = st.text_input("Patient Name", placeholder="Full name (optional)")
 with pc2:
@@ -886,3 +960,186 @@ else:
       </p>
     </div>
     """, unsafe_allow_html=True)
+
+# ══════════════════════════════════════════════════════════════
+#  TAB 2 — SYMPTOM TRACKER
+# ══════════════════════════════════════════════════════════════
+with tab2:
+    st.markdown("""
+    <div style="text-align:center;padding:4px 0 24px;">
+      <h2 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;
+                 -webkit-text-fill-color:transparent;background-clip:text;font-size:26px;">
+        Daily Symptom Tracker
+      </h2>
+      <p style="margin:8px 0 0;color:#cbd5e1;font-size:13px;">
+        Log symptoms daily · AI detects patterns · Get early warnings
+      </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Init session state for logs
+    if "symptom_logs" not in st.session_state:
+        st.session_state.symptom_logs = []
+
+    # ── Log Entry Form ─────────────────────────────────────────
+    st.markdown("""
+    <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:14px;
+                padding:20px;margin-bottom:20px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+        <span style="font-size:18px;">📝</span>
+        <h3 style="margin:0;color:#e2e8f0;font-size:15px;">Log Today's Symptoms</h3>
+      </div>
+    """, unsafe_allow_html=True)
+
+    log_col1, log_col2 = st.columns(2)
+
+    with log_col1:
+        log_date     = st.date_input("📅 Date", value=datetime.now().date(), key="log_date")
+        log_memory   = st.slider("🧠 Memory Loss",            0, 10, 3, key="log_memory",   help="0 = None, 10 = Severe")
+        log_confusion= st.slider("😵 Confusion / Disorientation", 0, 10, 3, key="log_conf", help="0 = None, 10 = Severe")
+        log_mood     = st.slider("😔 Mood Changes",           0, 10, 3, key="log_mood",    help="0 = None, 10 = Severe")
+
+    with log_col2:
+        log_tasks    = st.slider("🏠 Daily Tasks Difficulty", 0, 10, 3, key="log_tasks",   help="0 = None, 10 = Severe")
+        log_sleep    = st.slider("😴 Sleep Quality",          0, 10, 5, key="log_sleep",   help="0 = Very Poor, 10 = Excellent")
+        log_overall  = st.slider("📊 Overall Condition",      0, 10, 5, key="log_overall", help="0 = Very Poor, 10 = Excellent")
+        log_notes    = st.text_input("📌 Notes (optional)", placeholder="Any observations...", key="log_notes")
+
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    save_col, clear_col = st.columns([3, 1])
+    with save_col:
+        if st.button("💾 Save Today's Log", use_container_width=True, key="save_log"):
+            new_log = {
+                "date":      str(log_date),
+                "memory":    log_memory,
+                "confusion": log_confusion,
+                "mood":      log_mood,
+                "tasks":     log_tasks,
+                "sleep":     log_sleep,
+                "overall":   log_overall,
+                "notes":     log_notes,
+            }
+            # Check if entry for this date already exists — update it
+            existing = [i for i, l in enumerate(st.session_state.symptom_logs) if l["date"] == str(log_date)]
+            if existing:
+                st.session_state.symptom_logs[existing[0]] = new_log
+                st.success("✅ Log updated for " + str(log_date))
+            else:
+                st.session_state.symptom_logs.append(new_log)
+                st.success("✅ Log saved for " + str(log_date))
+            st.rerun()
+    with clear_col:
+        if st.button("🗑️ Clear All", use_container_width=True, key="clear_logs"):
+            st.session_state.symptom_logs = []
+            st.rerun()
+
+    # ── Logs Table + Chart ─────────────────────────────────────
+    if st.session_state.symptom_logs:
+        logs = sorted(st.session_state.symptom_logs, key=lambda x: x["date"])
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("""
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <span style="font-size:16px;">📈</span>
+          <h3 style="margin:0;color:#e2e8f0;font-size:15px;">Symptom History</h3>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Build DataFrame
+        df = pd.DataFrame(logs)
+        df_display = df[["date","memory","confusion","mood","tasks","sleep","overall","notes"]].copy()
+        df_display.columns = ["Date","Memory","Confusion","Mood","Tasks","Sleep","Overall","Notes"]
+
+        st.dataframe(
+            df_display,
+            use_container_width=True,
+            hide_index=True,
+        )
+
+        # Line chart
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("""
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <span style="font-size:16px;">📉</span>
+          <h3 style="margin:0;color:#e2e8f0;font-size:15px;">Trend Chart</h3>
+        </div>
+        """, unsafe_allow_html=True)
+
+        chart_df = df[["date","memory","confusion","mood","tasks","overall"]].set_index("date")
+        chart_df.columns = ["Memory Loss","Confusion","Mood Changes","Task Difficulty","Overall"]
+        st.line_chart(chart_df, use_container_width=True)
+
+        # ── AI Analysis ────────────────────────────────────────
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("""
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <span style="font-size:20px;">🤖</span>
+          <div>
+            <h3 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;
+                       -webkit-text-fill-color:transparent;background-clip:text;font-size:16px;">
+              AI Trend Analysis
+            </h3>
+            <p style="margin:3px 0 0;color:#cbd5e1;font-size:12px;">
+              AI reviews all logs and flags patterns, risks, and next steps
+            </p>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        if len(logs) < 2:
+            st.markdown("""
+            <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:12px;
+                        padding:16px;text-align:center;color:#cbd5e1;font-size:13px;">
+              📊 Log at least <strong>2 days</strong> of symptoms to get AI trend analysis.
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            if st.button("🔍 Analyse Trends with AI", use_container_width=True, key="analyse_trends"):
+                with st.spinner("🤖 AI is analysing your symptom patterns..."):
+                    analysis = analyze_symptom_trends(logs)
+                st.session_state.trend_analysis = analysis
+
+            if "trend_analysis" in st.session_state and st.session_state.trend_analysis:
+                analysis_text = st.session_state.trend_analysis
+
+                # Determine risk level from analysis text for color
+                risk_color = "#4ade80"
+                risk_bg    = "#052e16"
+                if "critical" in analysis_text.lower():
+                    risk_color, risk_bg = "#f87171", "#1c0000"
+                elif "high" in analysis_text.lower():
+                    risk_color, risk_bg = "#fb923c", "#1c0800"
+                elif "moderate" in analysis_text.lower():
+                    risk_color, risk_bg = "#facc15", "#1c1400"
+
+                # Format the analysis nicely
+                formatted = analysis_text.replace("\n\n", "<br><br>").replace("\n", "<br>")
+
+                st.markdown(f"""
+                <div style="background:linear-gradient(135deg,{risk_color}0a,{risk_bg});
+                            border:1.5px solid {risk_color}55;border-radius:14px;padding:20px;margin-top:8px;">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                    <span style="font-size:22px;">🧠</span>
+                    <div>
+                      <div style="color:{risk_color};font-size:15px;font-weight:700;">AI Trend Report</div>
+                      <div style="color:#cbd5e1;font-size:11px;margin-top:2px;">
+                        Based on {len(logs)} logged entries · {logs[0]["date"]} → {logs[-1]["date"]}
+                      </div>
+                    </div>
+                  </div>
+                  <div style="color:#e2e8f0;font-size:13px;line-height:1.9;">{formatted}</div>
+                </div>
+                """, unsafe_allow_html=True)
+
+    else:
+        st.markdown("""
+        <div style="background:#0d1526;border:2px dashed #1e3a5f;border-radius:16px;
+                    padding:48px 24px;text-align:center;margin-top:8px;">
+          <div style="font-size:48px;margin-bottom:12px;">📋</div>
+          <p style="font-size:15px;margin:0;color:#cbd5e1;">No symptom logs yet</p>
+          <p style="font-size:12px;margin:8px 0 0;color:#94a3b8;">
+            Use the sliders above to log today's symptoms and start tracking
+          </p>
+        </div>
+        """, unsafe_allow_html=True)
