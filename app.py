@@ -546,57 +546,56 @@ if uploaded:
         """, unsafe_allow_html=True)
 
         # Prescription header
-        st.markdown(f"""
-        <div style="display:flex;align-items:center;gap:8px;padding-bottom:12px;
-                    border-bottom:1px solid {data['color']}33;margin-bottom:14px;">
-          <span style="font-size:16px;">💊</span>
-          <h3 style="margin:0;color:{data['color']};font-size:14px;text-transform:uppercase;
-                     letter-spacing:.1em;font-family:'DM Sans',sans-serif;">Prescribed Protocol</h3>
-          <span style="margin-left:auto;font-size:11px;color:#475569;font-style:italic;">
-            Consult physician before starting
-          </span>
-        </div>
-        """, unsafe_allow_html=True)
-    # prescription loop
+st.markdown(f"""
+<div style="display:flex;align-items:center;gap:8px;padding-bottom:12px;
+            border-bottom:1px solid {data['color']}33;margin-bottom:18px;">
+  <span style="font-size:18px;">💊</span>
+  <h3 style="margin:0;color:{data['color']};font-size:15px;text-transform:uppercase;
+             letter-spacing:.08em;font-family:'DM Sans',sans-serif;">Prescribed Protocol</h3>
+  <span style="margin-left:auto;font-size:11px;color:#64748b;font-style:italic;">
+    Consult physician before starting
+  </span>
+</div>
+""", unsafe_allow_html=True)
+
+# Prescription items
 for item in data["supplements"]:
     # type coloring
     tc       = data["color"] if item["type"] == "nutrient" else "#a78bfa"
-    lb       = data["color"] if item["type"] == "nutrient" else "#6366f1"
     icon     = "💊" if item["type"] == "nutrient" else "🌿"
     badge_bg = "#0d1e38" if item["type"] == "nutrient" else "#1a0a44"
 
-    # flatten schedule dictionary into a string
-    sched = " &nbsp;|&nbsp; ".join(
-        [f"{day}: {', '.join(times)}" for day, times in item["schedule"].items()]
+    # schedule as a vertical list
+    sched_html = "".join(
+        [f"<li>{day}: {', '.join(times)}</li>" for day, times in item["schedule"].items()]
     )
 
     st.markdown(f"""
-    <div style="background:#0d1526;border:1px solid #1e293b;border-left:3px solid {lb};
-                border-radius:10px;padding:12px 16px;margin-bottom:9px;">
-      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;">
-        <div style="flex:1;min-width:160px;">
-          <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;">
-            <span style="font-size:14px;">{icon}</span>
-            <strong style="color:{tc};font-size:13px;">{item['name']}</strong>
-            <span style="background:{badge_bg};color:{tc};border:1px solid {tc}33;
-                         border-radius:10px;padding:1px 8px;font-size:10px;
-                         text-transform:uppercase;letter-spacing:.07em;">{item['type']}</span>
-          </div>
-          <div style="font-size:11px;color:#475569;line-height:1.5;">{item['purpose']}</div>
+    <div style="background:#0d1526;border:1px solid #1e293b;border-radius:12px;
+                padding:14px 18px;margin-bottom:14px;box-shadow:0 2px 6px rgba(0,0,0,.25);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+        <span style="font-size:16px;">{icon}</span>
+        <strong style="color:{tc};font-size:14px;">{item['name']}</strong>
+        <span style="background:{badge_bg};color:{tc};border:1px solid {tc}33;
+                     border-radius:8px;padding:2px 8px;font-size:10px;
+                     text-transform:uppercase;letter-spacing:.05em;">{item['type']}</span>
+      </div>
+      <div style="font-size:12px;color:#94a3b8;margin-bottom:8px;">{item['purpose']}</div>
+      <div style="display:flex;gap:30px;">
+        <div>
+          <div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.05em;">Dose</div>
+          <div style="font-size:13px;color:#e2e8f0;font-weight:600;margin-top:2px;">{item['dose']}</div>
         </div>
-        <div style="display:flex;gap:22px;flex-shrink:0;align-items:center;">
-          <div>
-            <div style="font-size:10px;color:#334155;text-transform:uppercase;letter-spacing:.1em;">Dose</div>
-            <div style="font-size:13px;color:#e2e8f0;font-weight:600;margin-top:2px;">{item['dose']}</div>
-          </div>
-          <div>
-            <div style="font-size:10px;color:#334155;text-transform:uppercase;letter-spacing:.1em;">Schedule</div>
-            <div style="font-size:12px;color:{data['color']};margin-top:3px;line-height:1.9;">{sched}</div>
-          </div>
+        <div>
+          <div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.05em;">Schedule</div>
+          <ul style="margin:4px 0 0;padding-left:16px;color:{data['color']};font-size:12px;line-height:1.6;">
+            {sched_html}
+          </ul>
         </div>
       </div>
     </div>
     """, unsafe_allow_html=True)
+
 
        
 
