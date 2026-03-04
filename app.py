@@ -558,41 +558,47 @@ if uploaded:
         </div>
         """, unsafe_allow_html=True)
 
-        # Prescription items
-        for item in data["supplements"]:
-            tc       = data["color"] if item["type"] == "medication" else "#a78bfa"
-            lb       = data["color"] if item["type"] == "medication" else "#6366f1"
-            icon     = "💊" if item["type"] == "medication" else "🌿"
-            sched    = " &nbsp;|&nbsp; ".join([f"🕐 {t}" for t in item["times"]])
-            badge_bg = "#0d1e38" if item["type"] == "medication" else "#1a0a44"
+        # Prescription item
+       for item in data["supplements"]:
+    
+    tc       = data["color"] if item["type"] == "nutrient" else "#a78bfa"
+    lb       = data["color"] if item["type"] == "nutrient" else "#6366f1"
+    icon     = "💊" if item["type"] == "nutrient" else "🌿"
+    badge_bg = "#0d1e38" if item["type"] == "nutrient" else "#1a0a44"
 
-            st.markdown(f"""
-            <div style="background:#0d1526;border:1px solid #1e293b;border-left:3px solid {lb};
-                        border-radius:10px;padding:12px 16px;margin-bottom:9px;">
-              <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;">
-                <div style="flex:1;min-width:160px;">
-                  <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;">
-                    <span style="font-size:14px;">{icon}</span>
-                    <strong style="color:{tc};font-size:13px;">{item['name']}</strong>
-                    <span style="background:{badge_bg};color:{tc};border:1px solid {tc}33;
-                                 border-radius:10px;padding:1px 8px;font-size:10px;
-                                 text-transform:uppercase;letter-spacing:.07em;">{item['type']}</span>
-                  </div>
-                  <div style="font-size:11px;color:#475569;line-height:1.5;">{item['purpose']}</div>
-                </div>
-                <div style="display:flex;gap:22px;flex-shrink:0;align-items:center;">
-                  <div>
-                    <div style="font-size:10px;color:#334155;text-transform:uppercase;letter-spacing:.1em;">Dose</div>
-                    <div style="font-size:13px;color:#e2e8f0;font-weight:600;margin-top:2px;">{item['dose']}</div>
-                  </div>
-                  <div>
-                    <div style="font-size:10px;color:#334155;text-transform:uppercase;letter-spacing:.1em;">Schedule</div>
-                    <div style="font-size:12px;color:{data['color']};margin-top:3px;line-height:1.9;">{sched}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            """, unsafe_allow_html=True)
+    # flatten schedule dictionary into a string
+    sched = " &nbsp;|&nbsp; ".join(
+        [f"{day}: {', '.join(times)}" for day, times in item["schedule"].items()]
+    )
+
+    st.markdown(f"""
+    <div style="background:#0d1526;border:1px solid #1e293b;border-left:3px solid {lb};
+                border-radius:10px;padding:12px 16px;margin-bottom:9px;">
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;">
+        <div style="flex:1;min-width:160px;">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;">
+            <span style="font-size:14px;">{icon}</span>
+            <strong style="color:{tc};font-size:13px;">{item['name']}</strong>
+            <span style="background:{badge_bg};color:{tc};border:1px solid {tc}33;
+                         border-radius:10px;padding:1px 8px;font-size:10px;
+                         text-transform:uppercase;letter-spacing:.07em;">{item['type']}</span>
+          </div>
+          <div style="font-size:11px;color:#475569;line-height:1.5;">{item['purpose']}</div>
+        </div>
+        <div style="display:flex;gap:22px;flex-shrink:0;align-items:center;">
+          <div>
+            <div style="font-size:10px;color:#334155;text-transform:uppercase;letter-spacing:.1em;">Dose</div>
+            <div style="font-size:13px;color:#e2e8f0;font-weight:600;margin-top:2px;">{item['dose']}</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:#334155;text-transform:uppercase;letter-spacing:.1em;">Schedule</div>
+            <div style="font-size:12px;color:{data['color']};margin-top:3px;line-height:1.9;">{sched}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
 
     # ── Disclaimer ─────────────────────────────────────────────
     st.markdown("""
