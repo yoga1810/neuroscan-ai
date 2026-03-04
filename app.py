@@ -220,11 +220,9 @@ def build_email_html(name, age, stage_key, conf, all_probs):
         tc   = c if is_nutrient else "#a78bfa"
         icon = "💊" if is_nutrient else "🌿"
 
-        # Correct schedule rendering (dictionary)
-        sched = "<br>".join([
-            f"<strong>{day}:</strong> {', '.join(times)}"
-            for day, times in item["schedule"].items()
-        ])
+        sched = " | ".join(
+    [f"{day}: {', '.join(times)}" for day, times in item["schedule"].items()])
+
 
         rows += f"""
         <tr>
