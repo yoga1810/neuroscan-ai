@@ -546,7 +546,7 @@ if uploaded:
         """, unsafe_allow_html=True)
 
         # Prescription header
-        st.markdown(f"""
+st.markdown(f"""
         <div style="display:flex;align-items:center;gap:8px;padding-bottom:12px;
                     border-bottom:1px solid {data['color']}33;margin-bottom:14px;">
           <span style="font-size:16px;">💊</span>
@@ -557,7 +557,8 @@ if uploaded:
           </span>
         </div>
         """, unsafe_allow_html=True)
-        for item in data["supplements"]:
+    # prescription loop
+for item in data["supplements"]:
     # type coloring
     tc       = data["color"] if item["type"] == "nutrient" else "#a78bfa"
     lb       = data["color"] if item["type"] == "nutrient" else "#6366f1"
