@@ -378,17 +378,17 @@ def send_email(sender, password, recipient, subject, html):
 
 # ── Chatbot helper ─────────────────────────────────────────────
 def ask_neuroscan_ai(messages: list, stage_context: str = "", api_key: str = "") -> str:
-    """Call Gemini API for the NeuroScan chatbot."""
-    # Try Streamlit secrets first, then sidebar input, then env variable
+    """Call Groq API for the NeuroScan chatbot."""
+    # Try Streamlit secrets first, then env variable
     if not api_key:
         try:
-            api_key = st.secrets.get("GEMINI_API_KEY", "")
+            api_key = st.secrets.get("GROQ_API_KEY", "")
         except:
             pass
     if not api_key:
-        api_key = os.environ.get("GEMINI_API_KEY", "")
+        api_key = os.environ.get("GROQ_API_KEY", "")
     if not api_key:
-        return "⚠️ Please enter your Gemini API key in the sidebar to use the chatbot."
+        return "⚠️ GROQ_API_KEY not found. Please add it to Streamlit Secrets."
 
     system_prompt = f"""You are NeuroScan AI Assistant, a compassionate and knowledgeable medical support chatbot embedded in a brain MRI analysis app for Alzheimer's disease detection.
 
@@ -408,28 +408,31 @@ Guidelines:
 - Keep responses concise (3-5 sentences) unless a detailed explanation is requested
 - If asked something outside your scope, gently redirect to a healthcare professional"""
 
-    # Build Gemini-format contents from message history
-    gemini_contents = []
+    # Build messages with system prompt
+    groq_messages = [{"role": "system", "content": system_prompt}]
     for msg in messages:
-        role = "user" if msg["role"] == "user" else "model"
-        gemini_contents.append({"role": role, "parts": [{"text": msg["content"]}]})
+        groq_messages.append({"role": msg["role"], "content": msg["content"]})
 
     payload = {
-        "system_instruction": {"parts": [{"text": system_prompt}]},
-        "contents": gemini_contents,
-        "generationConfig": {"maxOutputTokens": 1000, "temperature": 0.7},
+        "model": "llama-3.3-70b-versatile",
+        "messages": groq_messages,
+        "max_tokens": 1000,
+        "temperature": 0.7,
     }
 
     try:
         resp = requests.post(
-            f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}",
-            headers={"Content-Type": "application/json"},
+            "https://api.groq.com/openai/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
             json=payload,
             timeout=30,
         )
         data = resp.json()
         if resp.status_code == 200:
-            return data["candidates"][0]["content"]["parts"][0]["text"]
+            return data["choices"][0]["message"]["content"]
         else:
             return f"⚠️ API error {resp.status_code}: {data.get('error', {}).get('message', 'Unknown error')}"
     except Exception as e:
