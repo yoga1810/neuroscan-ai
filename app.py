@@ -267,7 +267,7 @@ def build_email_html(name, age, stage_key, conf, all_probs):
         rows += f"""<tr>
           <td style="padding:10px 14px;border-bottom:1px solid #1e293b;">
             <strong style="color:{tc};font-size:13px;">{icon} {item['name']}</strong>
-            <div style="font-size:11px;color:#64748b;margin-top:2px;">{item['purpose']}</div>
+            <div style="font-size:11px;color:#cbd5e1;margin-top:2px;">{item['purpose']}</div>
           </td>
           <td style="padding:10px 14px;border-bottom:1px solid #1e293b;color:#e2e8f0;font-weight:600;">{item['dose']}</td>
           <td style="padding:10px 14px;border-bottom:1px solid #1e293b;color:{c};font-size:12px;line-height:1.8;">{sched}</td>
@@ -278,7 +278,7 @@ def build_email_html(name, age, stage_key, conf, all_probs):
         bc = STAGE_DATA[cls]["color"]
         bars += f"""<div style="margin-bottom:8px;">
           <div style="display:flex;justify-content:space-between;font-size:12px;">
-            <span style="color:#94a3b8;">{STAGE_DATA[cls]['label']}</span>
+            <span style="color:#cbd5e1;">{STAGE_DATA[cls]['label']}</span>
             <span style="color:{bc};font-weight:600;">{prob:.1f}%</span>
           </div>
           <div style="background:#1e293b;border-radius:4px;height:6px;">
@@ -307,14 +307,14 @@ def build_email_html(name, age, stage_key, conf, all_probs):
       <span style="font-size:24px;">{data['emoji']}</span>
       <div>
         <div style="color:{c};font-size:18px;font-weight:700;">{data['label']}</div>
-        <div style="color:#94a3b8;font-size:12px;">
+        <div style="color:#cbd5e1;font-size:12px;">
           Confidence: <strong style="color:{c};">{conf:.1f}%</strong> &nbsp;·&nbsp; {data['urgency']}
         </div>
       </div>
     </div>
-    <p style="color:#94a3b8;font-size:13px;margin:0;">{data['description']}</p>
+    <p style="color:#cbd5e1;font-size:13px;margin:0;">{data['description']}</p>
     {patient_line}
-    <p style="color:#475569;font-size:11px;margin:6px 0 0;">Report Date: {date_str}</p>
+    <p style="color:#cbd5e1;font-size:11px;margin:6px 0 0;">Report Date: {date_str}</p>
   </div>
   <div style="background:#0f172a;border:1px solid #1e293b;border-radius:14px;padding:16px;margin-bottom:16px;">
     <h3 style="margin:0 0 12px;color:#e2e8f0;font-size:12px;text-transform:uppercase;letter-spacing:.1em;">
@@ -326,11 +326,11 @@ def build_email_html(name, age, stage_key, conf, all_probs):
                 text-transform:uppercase;border-bottom:1px solid {c}33;">💊 Prescribed Protocol</div>
     <table style="width:100%;border-collapse:collapse;">
       <thead><tr style="background:#080d16;">
-        <th style="padding:7px 12px;text-align:left;font-size:10px;color:#475569;
+        <th style="padding:7px 12px;text-align:left;font-size:10px;color:#cbd5e1;
                    text-transform:uppercase;border-bottom:1px solid #1e293b;">Name</th>
-        <th style="padding:7px 12px;text-align:left;font-size:10px;color:#475569;
+        <th style="padding:7px 12px;text-align:left;font-size:10px;color:#cbd5e1;
                    text-transform:uppercase;border-bottom:1px solid #1e293b;">Dose</th>
-        <th style="padding:7px 12px;text-align:left;font-size:10px;color:#475569;
+        <th style="padding:7px 12px;text-align:left;font-size:10px;color:#cbd5e1;
                    text-transform:uppercase;border-bottom:1px solid #1e293b;">Schedule</th>
       </tr></thead>
       <tbody>{rows}</tbody>
@@ -338,7 +338,7 @@ def build_email_html(name, age, stage_key, conf, all_probs):
   </div>
   <div style="background:#0f172a;border:1px solid #1e3a5f;border-radius:12px;padding:14px;margin-bottom:14px;">
     <h3 style="margin:0 0 8px;color:#38bdf8;font-size:12px;text-transform:uppercase;">💡 Daily Reminder Tips</h3>
-    <ul style="margin:0;padding-left:16px;color:#94a3b8;font-size:12px;line-height:2;">
+    <ul style="margin:0;padding-left:16px;color:#cbd5e1;font-size:12px;line-height:2;">
       <li>Set phone alarms for each medication time above.</li>
       <li>Take supplements with food for better absorption.</li>
       <li>Keep a daily medication log to track compliance.</li>
@@ -352,7 +352,7 @@ def build_email_html(name, age, stage_key, conf, all_probs):
       Always consult a licensed neurologist before starting any medication or supplement.
     </p>
   </div>
-  <p style="text-align:center;color:#334155;font-size:10px;margin-top:16px;">
+  <p style="text-align:center;color:#e2e8f0;font-size:10px;margin-top:16px;">
     NeuroScan AI · EfficientNetB0 · 96.3% Accuracy · {date_str}
   </p>
 </div></body></html>"""
@@ -456,8 +456,8 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("**ℹ️ About**")
     st.markdown("""
-    <p style="font-size:12px;line-height:1.7;color:#64748b !important;">
-    This app uses a deep learning model based on <strong style="color:#94a3b8 !important;">EfficientNet-B0</strong>
+    <p style="font-size:12px;line-height:1.7;color:#e2e8f0 !important;">
+    This app uses a deep learning model based on <strong style="color:#e2e8f0 !important;">EfficientNet-B0</strong>
     to classify MRI scans into 4 Alzheimer's severity stages and generates
     a personalised prescription protocol with email alerts.
     </p>
@@ -471,7 +471,7 @@ with st.sidebar:
           <div style="width:8px;height:8px;border-radius:50%;background:{data['color']};flex-shrink:0;"></div>
           <div>
             <div style="font-size:12px;color:#e2e8f0 !important;font-weight:600;">{data['label']}</div>
-            <div style="font-size:10px;color:#475569 !important;">{data['urgency']}</div>
+            <div style="font-size:10px;color:#cbd5e1 !important;">{data['urgency']}</div>
           </div>
         </div>
         """, unsafe_allow_html=True)
@@ -501,7 +501,7 @@ st.markdown("""
   <h1 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:32px;letter-spacing:.02em;">
     Alzheimer's MRI Analysis
   </h1>
-  <p style="margin:8px 0 0;color:#64748b;font-size:14px;">
+  <p style="margin:8px 0 0;color:#cbd5e1;font-size:14px;">
     Upload a brain MRI scan · Get instant classification · Receive personalised care protocol
   </p>
 """, unsafe_allow_html=True)
@@ -546,10 +546,10 @@ if uploaded:
                 <span style="font-size:28px;">🚫</span>
                 <div>
                   <div style="color:#f87171;font-size:17px;font-weight:700;">Invalid Image Detected</div>
-                  <div style="color:#94a3b8;font-size:12px;margin-top:2px;">This does not appear to be a brain MRI scan</div>
+                  <div style="color:#cbd5e1;font-size:12px;margin-top:2px;">This does not appear to be a brain MRI scan</div>
                 </div>
               </div>
-              <p style="color:#94a3b8;font-size:13px;margin:0 0 14px;line-height:1.7;">
+              <p style="color:#cbd5e1;font-size:13px;margin:0 0 14px;line-height:1.7;">
                 The uploaded image failed one or more MRI validation checks:
               </p>
               <div style="background:#1c0000;border:1px solid #7f1d1d;border-radius:8px;padding:12px;margin-bottom:14px;">
@@ -559,7 +559,7 @@ if uploaded:
                 <p style="color:#38bdf8;font-size:12px;font-weight:600;margin:0 0 6px;">
                   ✅ What a valid MRI scan looks like:
                 </p>
-                <ul style="color:#64748b;font-size:12px;margin:0;padding-left:16px;line-height:2;">
+                <ul style="color:#cbd5e1;font-size:12px;margin:0;padding-left:16px;line-height:2;">
                   <li>Grayscale image with a large dark (black) background</li>
                   <li>Bright oval/circular brain structure in the center</li>
                   <li>No color — MRI scans are always black & white</li>
@@ -593,7 +593,7 @@ if uploaded:
             <span style="font-size:20px;">⚠️</span>
             <div>
               <strong style="color:#fb923c;font-size:13px;">Low Confidence Result ({conf:.1f}%)</strong>
-              <p style="color:#94a3b8;font-size:12px;margin:4px 0 0;line-height:1.6;">
+              <p style="color:#cbd5e1;font-size:12px;margin:4px 0 0;line-height:1.6;">
                 The model is not confident in this classification. The image may not be a standard
                 Alzheimer's MRI scan, or the scan quality may be poor. Please verify with a qualified neurologist.
               </p>
@@ -646,15 +646,15 @@ if uploaded:
             <div>
               <div style="color:{data['color']};font-size:20px;font-weight:700;
                           font-family:'DM Serif Display',serif;">{data['label']}</div>
-              <div style="color:#94a3b8;font-size:12px;margin-top:2px;">
+              <div style="color:#cbd5e1;font-size:12px;margin-top:2px;">
                 Confidence: <strong style="color:{data['color']};">{conf:.1f}%</strong>
                 &nbsp;·&nbsp; <span style="color:{data['color']};">{data['urgency']}</span>
               </div>
             </div>
           </div>
-          <p style="color:#94a3b8;font-size:13px;margin:0;line-height:1.7;">{data['description']}</p>
+          <p style="color:#cbd5e1;font-size:13px;margin:0;line-height:1.7;">{data['description']}</p>
           {patient_line}
-          <p style="color:#334155;font-size:11px;margin:8px 0 0;">Analyzed: {date_str}</p>
+          <p style="color:#e2e8f0;font-size:11px;margin:8px 0 0;">Analyzed: {date_str}</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -686,15 +686,15 @@ if uploaded:
                                  border-radius:10px;padding:1px 8px;font-size:10px;
                                  text-transform:uppercase;letter-spacing:.07em;">{item['type']}</span>
                   </div>
-                  <div style="font-size:11px;color:#475569;line-height:1.5;">{item['purpose']}</div>
+                  <div style="font-size:11px;color:#cbd5e1;line-height:1.5;">{item['purpose']}</div>
                 </div>
                 <div style="display:flex;gap:22px;flex-shrink:0;align-items:center;">
                   <div>
-                    <div style="font-size:10px;color:#334155;text-transform:uppercase;letter-spacing:.1em;">Dose</div>
+                    <div style="font-size:10px;color:#e2e8f0;text-transform:uppercase;letter-spacing:.1em;">Dose</div>
                     <div style="font-size:13px;color:#e2e8f0;font-weight:600;margin-top:2px;">{item['dose']}</div>
                   </div>
                   <div>
-                    <div style="font-size:10px;color:#334155;text-transform:uppercase;letter-spacing:.1em;">Schedule</div>
+                    <div style="font-size:10px;color:#e2e8f0;text-transform:uppercase;letter-spacing:.1em;">Schedule</div>
                     <div style="font-size:12px;color:{data['color']};margin-top:3px;line-height:1.9;">{sched}</div>
                   </div>
                 </div>
@@ -713,7 +713,7 @@ if uploaded:
         <h3 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:17px;font-family:'DM Serif Display',serif;">
           Send Prescription Email Alert
         </h3>
-        <p style="margin:3px 0 0;color:#475569;font-size:12px;">
+        <p style="margin:3px 0 0;color:#cbd5e1;font-size:12px;">
           Email the full care protocol with dosing schedule to patient or caregiver
         </p>
       </div>
@@ -749,10 +749,10 @@ if uploaded:
       <p style="margin:0 0 8px;color:#38bdf8;font-size:12px;font-weight:600;">
         ℹ️ How to get a Gmail App Password (required)
       </p>
-      <ol style="margin:0;padding-left:18px;color:#475569;font-size:12px;line-height:2.1;">
-        <li>Go to <strong style="color:#94a3b8;">myaccount.google.com</strong> → Security</li>
-        <li>Enable <strong style="color:#94a3b8;">2-Step Verification</strong></li>
-        <li>Search <strong style="color:#94a3b8;">App Passwords</strong> → Mail + Other → Name it "NeuroScan"</li>
+      <ol style="margin:0;padding-left:18px;color:#cbd5e1;font-size:12px;line-height:2.1;">
+        <li>Go to <strong style="color:#cbd5e1;">myaccount.google.com</strong> → Security</li>
+        <li>Enable <strong style="color:#cbd5e1;">2-Step Verification</strong></li>
+        <li>Search <strong style="color:#cbd5e1;">App Passwords</strong> → Mail + Other → Name it "NeuroScan"</li>
         <li>Copy the 16-character password → paste in the field above</li>
       </ol>
     </div>
@@ -776,7 +776,7 @@ if uploaded:
         <h3 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;
                    -webkit-text-fill-color:transparent;background-clip:text;font-size:17px;
                    font-family:'DM Serif Display',serif;">NeuroScan AI Assistant</h3>
-        <p style="margin:3px 0 0;color:#475569;font-size:12px;">
+        <p style="margin:3px 0 0;color:#cbd5e1;font-size:12px;">
           Ask anything about the diagnosis, nutrients, caregiving, or lifestyle advice
         </p>
       </div>
@@ -815,9 +815,9 @@ if uploaded:
         if not st.session_state.chat_history:
             st.markdown(f"""
             <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:14px;
-                        padding:18px;text-align:center;color:#475569;">
+                        padding:18px;text-align:center;color:#cbd5e1;">
               <div style="font-size:32px;margin-bottom:8px;">🧬</div>
-              <p style="font-size:13px;margin:0;color:#64748b;">
+              <p style="font-size:13px;margin:0;color:#cbd5e1;">
                 Hi! I'm your NeuroScan AI Assistant. I can see the scan result is
                 <strong style="color:{data['color']};">{data['label']}</strong>.
                 Ask me anything about the diagnosis, recommended nutrients, or how to support the patient.
@@ -876,12 +876,12 @@ else:
     # ── Empty state ────────────────────────────────────────────
     st.markdown("""
     <div style="background:#0d1526;border:2px dashed #1e3a5f;border-radius:16px;
-                padding:64px 24px;text-align:center;color:#334155;margin-top:16px;">
+                padding:64px 24px;text-align:center;color:#e2e8f0;margin-top:16px;">
       <div style="font-size:52px;margin-bottom:14px;">🧠</div>
-      <p style="font-size:16px;letter-spacing:.04em;margin:0;color:#475569;">
+      <p style="font-size:16px;letter-spacing:.04em;margin:0;color:#cbd5e1;">
         Upload an MRI scan above to begin analysis
       </p>
-      <p style="font-size:12px;margin:8px 0 0;color:#334155;">
+      <p style="font-size:12px;margin:8px 0 0;color:#e2e8f0;">
         Supported formats: JPG · JPEG · PNG
       </p>
     </div>
