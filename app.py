@@ -262,8 +262,8 @@ def build_email_html(name, age, stage_key, conf, all_probs):
     rows = ""
     for item in data["supplements"]:
         tc   = c if item["type"] == "medication" else "#a78bfa"
-        icon = "💊" if item["type"] == "medication" else "🌿"
-        sched = "<br>".join([f"🕐 {t}" for t in item["times"]])
+        icon = ""
+        sched = "<br>".join([f"{t}" for t in item["times"]])
         rows += f"""<tr>
           <td style="padding:10px 14px;border-bottom:1px solid #1e293b;">
             <strong style="color:{tc};font-size:13px;">{icon} {item['name']}</strong>
@@ -295,7 +295,7 @@ def build_email_html(name, age, stage_key, conf, all_probs):
 <div style="max-width:640px;margin:0 auto;padding:24px 16px;">
   <div style="background:linear-gradient(135deg,#0f0f1f,#1a1a2e);border:1px solid #1e293b;
               border-radius:14px;padding:20px;margin-bottom:18px;text-align:center;">
-    <div style="font-size:32px;">🧬</div>
+    
     <h1 style="margin:4px 0 0;color:#e0e7ff;font-size:20px;">NeuroScan AI</h1>
     <p style="margin:3px 0 0;color:#6366f1;font-size:11px;letter-spacing:.15em;text-transform:uppercase;">
       Alzheimer's Detection & Care Protocol
@@ -323,7 +323,7 @@ def build_email_html(name, age, stage_key, conf, all_probs):
   </div>
   <div style="background:#0f172a;border:1px solid #1e293b;border-radius:14px;overflow:hidden;margin-bottom:16px;">
     <div style="padding:10px 14px;background:#0a0f1e;color:{c};font-size:12px;font-weight:600;
-                text-transform:uppercase;border-bottom:1px solid {c}33;">💊 Prescribed Protocol</div>
+                text-transform:uppercase;letter-spacing:.12em;border-bottom:1px solid {c}33;">PRESCRIBED PROTOCOL</div>
     <table style="width:100%;border-collapse:collapse;">
       <thead><tr style="background:#080d16;">
         <th style="padding:7px 12px;text-align:left;font-size:10px;color:#cbd5e1;
@@ -337,7 +337,7 @@ def build_email_html(name, age, stage_key, conf, all_probs):
     </table>
   </div>
   <div style="background:#0f172a;border:1px solid #1e3a5f;border-radius:12px;padding:14px;margin-bottom:14px;">
-    <h3 style="margin:0 0 8px;color:#38bdf8;font-size:12px;text-transform:uppercase;">💡 Daily Reminder Tips</h3>
+    <h3 style="margin:0 0 8px;color:#38bdf8;font-size:12px;text-transform:uppercase;">Daily Reminder Tips</h3>
     <ul style="margin:0;padding-left:16px;color:#cbd5e1;font-size:12px;line-height:2;">
       <li>Set phone alarms for each medication time above.</li>
       <li>Take supplements with food for better absorption.</li>
@@ -348,7 +348,7 @@ def build_email_html(name, age, stage_key, conf, all_probs):
   </div>
   <div style="background:rgba(239,68,68,.06);border:1px solid #7f1d1d;border-radius:10px;padding:10px 14px;">
     <p style="margin:0;color:#f87171;font-size:11px;line-height:1.7;">
-      ⚕ <strong>Disclaimer:</strong> AI-generated guidance only.
+      <strong>Note:</strong> AI-generated guidance only.
       Always consult a licensed neurologist before starting any medication or supplement.
     </p>
   </div>
@@ -516,19 +516,23 @@ Be concise, empathetic, and clear. Use plain language. Format with clear section
 # ══════════════════════════════════════════════════════════════
 with st.sidebar:
     st.markdown("""
-    <div style="text-align:center;padding:16px 0 24px;">
-      <div style="font-size:40px;margin-bottom:6px;">🧬</div>
-      <h2 style="margin:0;color:#e0e7ff !important;font-family:'Playfair Display',serif;font-size:20px;">NeuroScan AI</h2>
-      <p style="margin:4px 0 0;color:#6366f1 !important;font-size:10px;letter-spacing:.15em;text-transform:uppercase;">
+    <div style="text-align:center;padding:20px 0 24px;">
+      <div style="width:48px;height:48px;background:linear-gradient(135deg,#6366f1,#818cf8);
+                  border-radius:12px;margin:0 auto 12px;display:flex;align-items:center;
+                  justify-content:center;">
+        <div style="width:24px;height:24px;border:3px solid white;border-radius:50%;"></div>
+      </div>
+      <h2 style="margin:0;color:#e0e7ff !important;font-family:'Playfair Display',serif;font-size:22px;letter-spacing:.02em;">NeuroScan AI</h2>
+      <p style="margin:6px 0 0;color:#6366f1 !important;font-size:11px;letter-spacing:.15em;text-transform:uppercase;">
         Alzheimer's Detection
       </p>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.markdown("**About**")
+    st.markdown("<p style='font-size:15px;font-weight:700;color:#e2e8f0;'>About</p>", unsafe_allow_html=True)
     st.markdown("""
-    <p style="font-size:12px;line-height:1.7;color:#e2e8f0 !important;">
+    <p style="font-size:14px;line-height:1.8;color:#e2e8f0 !important;">
     This app uses a deep learning model based on <strong style="color:#e2e8f0 !important;">EfficientNet-B0</strong>
     to classify MRI scans into 4 Alzheimer's severity stages and generates
     a personalised prescription protocol with email alerts.
@@ -536,14 +540,14 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.markdown("**📊 Classification Stages**")
+    st.markdown("<p style='font-size:15px;font-weight:700;color:#e2e8f0;'>Classification Stages</p>", unsafe_allow_html=True)
     for key, data in STAGE_DATA.items():
         st.markdown(f"""
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
           <div style="width:8px;height:8px;border-radius:50%;background:{data['color']};flex-shrink:0;"></div>
           <div>
-            <div style="font-size:12px;color:#e2e8f0 !important;font-weight:600;">{data['label']}</div>
-            <div style="font-size:10px;color:#cbd5e1 !important;">{data['urgency']}</div>
+            <div style="font-size:14px;color:#e2e8f0 !important;font-weight:600;">{data['label']}</div>
+            <div style="font-size:12px;color:#cbd5e1 !important;">{data['urgency']}</div>
           </div>
         </div>
         """, unsafe_allow_html=True)
@@ -551,16 +555,16 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("""
     <div style="background:rgba(239,68,68,.06);border:1px solid #7f1d1d;border-radius:8px;padding:10px 12px;">
-      <p style="margin:0;color:#f87171 !important;font-size:11px;line-height:1.6;">
+      <p style="margin:0;color:#f87171 !important;font-size:13px;line-height:1.7;">
         For educational purposes only. Not a substitute for professional medical advice.
       </p>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.markdown("**AI Chatbot**")
+    st.markdown("<p style='font-size:15px;font-weight:700;color:#e2e8f0;'>AI Assistant Status</p>", unsafe_allow_html=True)
     st.markdown("""
-    <p style="font-size:11px;color:#4ade80 !important;margin-top:4px;">✅ AI Assistant is active</p>
+    <p style="font-size:14px;color:#4ade80 !important;margin-top:6px;font-weight:600;">Active</p>
     """, unsafe_allow_html=True)
     gemini_api_key = ""
 
@@ -580,7 +584,7 @@ st.markdown("""
 
 
 # ── Tabs ───────────────────────────────────────────────────────
-tab1, tab2, tab3 = st.tabs(["🧠 MRI Analysis", "📊 Symptom Tracker", "💳 Pricing"])
+tab1, tab2, tab3 = st.tabs(["MRI Analysis", "Symptom Tracker", "Pricing"])
 
 with tab1:
     # ── Patient info ─────────────────────────────────────────
@@ -606,7 +610,7 @@ with tab1:
         image = Image.open(uploaded)
 
         # ── MRI Validation ─────────────────────────────────────────
-        with st.spinner("🔎 Validating image..."):
+        with st.spinner("Validating image..."):
             is_valid, reason, details = is_likely_mri(image)
 
         if not is_valid:
@@ -619,7 +623,7 @@ with tab1:
                 <div style="background:rgba(239,68,68,.08);border:1.5px solid #ef4444;border-radius:14px;
                             padding:22px;margin-top:8px;">
                   <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-                    <span style="font-size:28px;">🚫</span>
+                    
                     <div>
                       <div style="color:#f87171;font-size:17px;font-weight:700;">Invalid Image Detected</div>
                       <div style="color:#cbd5e1;font-size:12px;margin-top:2px;">This does not appear to be a brain MRI scan</div>
@@ -629,11 +633,11 @@ with tab1:
                     The uploaded image failed one or more MRI validation checks:
                   </p>
                   <div style="background:#1c0000;border:1px solid #7f1d1d;border-radius:8px;padding:12px;margin-bottom:14px;">
-                    <p style="color:#fca5a5;font-size:12px;margin:0;line-height:1.8;">⚠️ {reason}</p>
+                    <p style="color:#fca5a5;font-size:12px;margin:0;line-height:1.8;">{reason}</p>
                   </div>
                   <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:8px;padding:12px;">
                     <p style="color:#38bdf8;font-size:12px;font-weight:600;margin:0 0 6px;">
-                      ✅ What a valid MRI scan looks like:
+                      What a valid MRI scan looks like:
                     </p>
                     <ul style="color:#cbd5e1;font-size:12px;margin:0;padding-left:16px;line-height:2;">
                       <li>Grayscale image with a large dark (black) background</li>
@@ -650,7 +654,7 @@ with tab1:
         model  = load_model()
         arr    = preprocess(image)
 
-        with st.spinner("🔍 Analyzing MRI scan..."):
+        with st.spinner("Analyzing MRI scan..."):
             probs = model.predict(arr, verbose=0)[0]
 
         idx       = int(np.argmax(probs))
@@ -666,7 +670,7 @@ with tab1:
             <div style="background:rgba(251,146,60,.08);border:1.5px solid #f97316;border-radius:12px;
                         padding:14px 18px;margin-bottom:16px;">
               <div style="display:flex;align-items:center;gap:8px;">
-                <span style="font-size:20px;">⚠️</span>
+                
                 <div>
                   <strong style="color:#fb923c;font-size:13px;">Low Confidence Result ({conf:.1f}%)</strong>
                   <p style="color:#cbd5e1;font-size:12px;margin:4px 0 0;line-height:1.6;">
@@ -737,7 +741,7 @@ with tab1:
             st.markdown(f"""
             <div style="display:flex;align-items:center;gap:8px;padding-bottom:12px;
                         border-bottom:1px solid {data['color']}33;margin-bottom:14px;">
-              <span style="font-size:16px;">💊</span>
+              
               <h3 style="margin:0;color:{data['color']} !important;font-size:14px;text-transform:uppercase;
                          letter-spacing:.1em;font-family:'DM Sans',sans-serif;-webkit-text-fill-color:{data['color']};">Prescribed Protocol</h3>
             </div>
@@ -746,34 +750,40 @@ with tab1:
             for item in data["supplements"]:
                 tc       = data["color"] if item["type"] == "medication" else "#a78bfa"
                 lb       = data["color"] if item["type"] == "medication" else "#6366f1"
-                icon     = "💊" if item["type"] == "medication" else "🌿"
-                sched    = " &nbsp;|&nbsp; ".join([f"🕐 {t}" for t in item["times"]])
+                sched_times = " &nbsp;&nbsp;|&nbsp;&nbsp; ".join([f"<strong>{t}</strong>" for t in item["times"]])
                 badge_bg = "#0d1e38" if item["type"] == "medication" else "#1a0a44"
 
                 st.markdown(f"""
                 <div style="background:#0d1526;border:1px solid #1e293b;border-left:3px solid {lb};
-                            border-radius:10px;padding:12px 16px;margin-bottom:9px;">
-                  <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;">
-                    <div style="flex:1;min-width:160px;">
-                      <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;">
-                        <span style="font-size:14px;">{icon}</span>
-                        <strong style="color:{tc};font-size:13px;">{item['name']}</strong>
-                        <span style="background:{badge_bg};color:{tc};border:1px solid {tc}33;
-                                     border-radius:10px;padding:1px 8px;font-size:10px;
-                                     text-transform:uppercase;letter-spacing:.07em;">{item['type']}</span>
+                            border-radius:10px;padding:14px 18px;margin-bottom:10px;">
+                  <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;">
+
+                    <div style="flex:1;min-width:180px;">
+                      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                        <strong style="color:{tc};font-size:14px;letter-spacing:.01em;">{item['name']}</strong>
+                        <span style="background:{badge_bg};color:{tc};border:1px solid {tc}44;
+                                     border-radius:6px;padding:2px 9px;font-size:9px;
+                                     text-transform:uppercase;letter-spacing:.1em;font-weight:700;">{item['type']}</span>
                       </div>
-                      <div style="font-size:11px;color:#cbd5e1;line-height:1.5;">{item['purpose']}</div>
-                    </div>
-                    <div style="display:flex;gap:22px;flex-shrink:0;align-items:center;">
-                      <div>
-                        <div style="font-size:10px;color:#e2e8f0;text-transform:uppercase;letter-spacing:.1em;">Dose</div>
-                        <div style="font-size:13px;color:#e2e8f0;font-weight:600;margin-top:2px;">{item['dose']}</div>
-                      </div>
-                      <div>
-                        <div style="font-size:10px;color:#e2e8f0;text-transform:uppercase;letter-spacing:.1em;">Schedule</div>
-                        <div style="font-size:12px;color:{data['color']};margin-top:3px;line-height:1.9;">{sched}</div>
+                      <div style="font-size:12px;color:#94a3b8;line-height:1.7;margin-top:2px;">
+                        {item['purpose']}
                       </div>
                     </div>
+
+                    <div style="display:flex;gap:28px;flex-shrink:0;align-items:flex-start;padding-top:2px;">
+                      <div>
+                        <div style="font-size:10px;color:#6366f1;text-transform:uppercase;
+                                    letter-spacing:.12em;font-weight:700;margin-bottom:5px;">DOSE</div>
+                        <div style="font-size:15px;color:#e2e8f0;font-weight:700;">{item['dose']}</div>
+                      </div>
+                      <div>
+                        <div style="font-size:10px;color:#6366f1;text-transform:uppercase;
+                                    letter-spacing:.12em;font-weight:700;margin-bottom:5px;">SCHEDULE</div>
+                        <div style="font-size:13px;color:{data['color']};font-weight:600;
+                                    line-height:2;">{sched_times}</div>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -783,24 +793,21 @@ with tab1:
         st.markdown("""<hr style="border-color:#1e293b;margin:8px 0 24px;">""", unsafe_allow_html=True)
 
         st.markdown("""
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-          <span style="font-size:22px;">📧</span>
-          <div>
+        <div style="margin-bottom:18px;">
             <h3 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:17px;font-family:'Playfair Display',serif;">
-              Send Prescription Email Alert
+              Send Prescription Email
             </h3>
-            <p style="margin:3px 0 0;color:#cbd5e1;font-size:12px;">
+            <p style="margin:6px 0 0;color:#cbd5e1;font-size:12px;">
               Email the full care protocol with dosing schedule to patient or caregiver
             </p>
-          </div>
         </div>
         """, unsafe_allow_html=True)
 
         ec1, ec2, ec3 = st.columns(3)
         with ec1:
-            recipient = st.text_input("📬 Recipient Email",    placeholder="patient@example.com")
+            recipient = st.text_input("Recipient Email",    placeholder="patient@example.com")
         with ec2:
-            sender_em = st.text_input("📤 Your Gmail Address", placeholder="youremail@gmail.com")
+            sender_em = st.text_input("Your Gmail Address", placeholder="youremail@gmail.com")
         with ec3:
             sender_pw = st.text_input("Gmail App Password", placeholder="xxxx xxxx xxxx xxxx", type="password")
 
@@ -810,9 +817,9 @@ with tab1:
             elif not sender_em or not sender_pw:
                 st.error("⚠️ Please enter your Gmail address and App Password.")
             else:
-                with st.spinner("📤 Sending email..."):
+                with st.spinner("Sending email..."):
                     html    = build_email_html(patient_name, patient_age, label, conf, all_probs)
-                    subject = f"🧠 NeuroScan AI — {data['label']} Prescription | {datetime.now().strftime('%d %b %Y')}"
+                    subject = f"NeuroScan AI — {data['label']} Prescription | {datetime.now().strftime('%d %b %Y')}"
                     ok, msg = send_email(sender_em, sender_pw, recipient, subject, html)
                 if ok:
                     st.success(msg)
@@ -823,7 +830,7 @@ with tab1:
         <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:12px;
                     padding:14px 18px;margin-top:12px;">
           <p style="margin:0 0 8px;color:#38bdf8;font-size:12px;font-weight:600;">
-            ℹ️ How to get a Gmail App Password (required)
+            How to get a Gmail App Password (required)
           </p>
           <ol style="margin:0;padding-left:18px;color:#cbd5e1;font-size:12px;line-height:2.1;">
             <li>Go to <strong style="color:#cbd5e1;">myaccount.google.com</strong> → Security</li>
@@ -846,15 +853,13 @@ with tab1:
             stage_context += f" Age: {patient_age}."
 
         st.markdown(f"""
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-              <div>
+        <div style="margin-bottom:18px;">
             <h3 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;
                        -webkit-text-fill-color:transparent;background-clip:text;font-size:17px;
-                       font-family:'Playfair Display',serif;">NeuroScan AI Assistant</h3>
-            <p style="margin:3px 0 0;color:#cbd5e1;font-size:12px;">
+                       font-family:'Playfair Display',serif;">AI Assistant</h3>
+            <p style="margin:6px 0 0;color:#cbd5e1;font-size:12px;">
               Ask anything about the diagnosis, nutrients, caregiving, or lifestyle advice
             </p>
-          </div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -891,7 +896,7 @@ with tab1:
                 st.markdown(f"""
                 <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:14px;
                             padding:18px;text-align:center;color:#cbd5e1;">
-                  <div style="font-size:32px;margin-bottom:8px;">🧬</div>
+                  
                   <p style="font-size:13px;margin:0;color:#cbd5e1;">
                     Hi! I'm your NeuroScan AI Assistant. I can see the scan result is
                     <strong style="color:{data['color']};">{data['label']}</strong>.
@@ -918,7 +923,7 @@ with tab1:
                                       padding:10px 14px;border-radius:16px 16px 16px 4px;
                                       max-width:80%;font-size:13px;line-height:1.6;">
                             <span style="font-size:10px;color:#6366f1;font-weight:600;
-                                         display:block;margin-bottom:4px;">🤖 NeuroScan AI</span>
+                                         display:block;margin-bottom:4px;">NeuroScan AI</span>
                             {msg["content"]}
                           </div>
                         </div>
@@ -941,7 +946,7 @@ with tab1:
 
         if send_clicked and user_input.strip():
             st.session_state.chat_history.append({"role": "user", "content": user_input.strip()})
-            with st.spinner("🤖 Thinking..."):
+            with st.spinner("Analysing..."):
                 reply = ask_neuroscan_ai(st.session_state.chat_history, stage_context, gemini_api_key)
             st.session_state.chat_history.append({"role": "assistant", "content": reply})
             st.rerun()
@@ -952,7 +957,7 @@ with tab1:
         st.markdown("""
         <div style="background:#0d1526;border:2px dashed #1e3a5f;border-radius:16px;
                     padding:64px 24px;text-align:center;color:#e2e8f0;margin-top:16px;">
-          <div style="font-size:52px;margin-bottom:14px;">🧠</div>
+          
           <p style="font-size:16px;letter-spacing:.04em;margin:0;color:#cbd5e1;">
             Upload an MRI scan above to begin analysis
           </p>
@@ -1108,12 +1113,12 @@ with tab2:
             st.markdown("""
             <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:12px;
                         padding:16px;text-align:center;color:#cbd5e1;font-size:13px;">
-              📊 Log at least <strong>2 days</strong> of symptoms to get AI trend analysis.
+              Log at least <strong>2 days</strong> of symptoms to get AI trend analysis.
             </div>
             """, unsafe_allow_html=True)
         else:
             if st.button("Analyse Trends with AI", use_container_width=True, key="analyse_trends"):
-                with st.spinner("🤖 AI is analysing your symptom patterns..."):
+                with st.spinner("Analysing symptom patterns..."):
                     analysis = analyze_symptom_trends(logs)
                 st.session_state.trend_analysis = analysis
 
@@ -1152,7 +1157,7 @@ with tab2:
         st.markdown("""
         <div style="background:#0d1526;border:2px dashed #1e3a5f;border-radius:16px;
                     padding:48px 24px;text-align:center;margin-top:8px;">
-          <div style="font-size:48px;margin-bottom:12px;">📋</div>
+          
           <p style="font-size:15px;margin:0;color:#cbd5e1;">No symptom logs yet</p>
           <p style="font-size:12px;margin:8px 0 0;color:#94a3b8;">
             Use the sliders above to log today's symptoms and start tracking
@@ -1288,7 +1293,7 @@ with tab3:
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-      <span style="font-size:18px;">📈</span>
+      
       <h3 style="margin:0;color:#e2e8f0;font-size:15px;">Revenue Projection</h3>
     </div>
     """, unsafe_allow_html=True)
@@ -1334,7 +1339,7 @@ with tab3:
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-      <span style="font-size:18px;">⚙️</span>
+      
       <h3 style="margin:0;color:#e2e8f0;font-size:15px;">Estimated Running Costs</h3>
     </div>
     """, unsafe_allow_html=True)
@@ -1368,9 +1373,9 @@ with tab3:
     <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:12px;
                 padding:14px 18px;margin-top:16px;text-align:center;">
       <p style="margin:0;color:#cbd5e1;font-size:12px;line-height:1.8;">
-        💳 Payments via <strong style="color:#38bdf8;">Razorpay</strong> (India) &
+        Payments via <strong style="color:#38bdf8;">Razorpay</strong> (India) &
         <strong style="color:#818cf8;">Stripe</strong> (International) ·
-        🔒 Secure & encrypted · Cancel anytime · No hidden fees
+        Secure & encrypted · Cancel anytime · No hidden fees
       </p>
     </div>
     """, unsafe_allow_html=True)
