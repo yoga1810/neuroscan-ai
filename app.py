@@ -118,11 +118,11 @@ STAGE_DATA = {
         "description": "No signs of Alzheimer's detected. Brain function appears normal. Preventive supplementation is recommended to maintain cognitive health.",
         "urgency": "Preventive Care",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",  "dose": "500 mg",  "times": ["8:00 AM"],            "purpose": "Supports brain cell membrane integrity & cognitive longevity",    "type": "nutrient"},
+            {"name": "Omega-3 (Fish Oil)",  "dose": "500 mg",  "times": ["8:00 AM"],            "purpose": "Supports brain cell membrane integrity and cognitive longevity",    "type": "nutrient"},
             {"name": "Beta-Carotene",       "dose": "3 mg",    "times": ["8:00 AM"],            "purpose": "Antioxidant precursor to Vitamin A; protects neurons",            "type": "nutrient"},
             {"name": "Vitamin E",           "dose": "200 IU",  "times": ["9:00 AM"],            "purpose": "Neuroprotective antioxidant; protects cell membranes",            "type": "nutrient"},
-            {"name": "Choline",             "dose": "250 mg",  "times": ["8:00 AM"],            "purpose": "Precursor to acetylcholine; supports memory & learning",          "type": "nutrient"},
-            {"name": "Vitamin B12",         "dose": "500 mcg", "times": ["8:00 AM"],            "purpose": "Reduces homocysteine; supports myelin sheath & nerve conduction",  "type": "nutrient"},
+            {"name": "Choline",             "dose": "250 mg",  "times": ["8:00 AM"],            "purpose": "Precursor to acetylcholine; supports memory and learning",          "type": "nutrient"},
+            {"name": "Vitamin B12",         "dose": "500 mcg", "times": ["8:00 AM"],            "purpose": "Reduces homocysteine; supports myelin sheath and nerve conduction",  "type": "nutrient"},
             {"name": "Curcumin (Turmeric)", "dose": "250 mg",  "times": ["8:00 AM"],            "purpose": "Mild anti-inflammatory; early amyloid plaque prevention",         "type": "nutrient"},
         ],
     },
@@ -131,11 +131,11 @@ STAGE_DATA = {
         "description": "Very early-stage cognitive changes detected. Lifestyle modifications and increased nutritional support can significantly slow progression.",
         "urgency": "Early Intervention Recommended",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",  "dose": "1000 mg", "times": ["8:00 AM", "8:00 PM"], "purpose": "Reduces neuro inflammation; supports synaptic plasticity",          "type": "nutrient"},
+            {"name": "Omega-3 (Fish Oil)",  "dose": "1000 mg", "times": ["8:00 AM", "8:00 PM"], "purpose": "Reduces neuroinflammation; supports synaptic plasticity",          "type": "nutrient"},
             {"name": "Vitamin E",           "dose": "400 IU",  "times": ["9:00 AM"],             "purpose": "Slows oxidative damage to neurons in early-stage decline",        "type": "nutrient"},
             {"name": "Choline",             "dose": "375 mg",  "times": ["8:00 AM", "1:00 PM"], "purpose": "Boosts acetylcholine production for memory preservation",         "type": "nutrient"},
             {"name": "Vitamin B12",         "dose": "750 mcg", "times": ["8:00 AM"],             "purpose": "Slows brain atrophy linked to B12 deficiency in early decline",  "type": "nutrient"},
-            {"name": "Curcumin (Turmeric)", "dose": "500 mg",  "times": ["8:00 AM", "6:00 PM"], "purpose": "Anti-inflammatory begins inhibiting amyloid-beta aggregation",    "type": "nutrient"},
+            {"name": "Curcumin (Turmeric)", "dose": "500 mg",  "times": ["8:00 AM", "6:00 PM"], "purpose": "Anti-inflammatory; begins inhibiting amyloid-beta aggregation",    "type": "nutrient"},
         ],
     },
     "MildDemented": {
@@ -143,11 +143,11 @@ STAGE_DATA = {
         "description": "Mild cognitive decline detected. Intensified nutritional protocol recommended alongside neurologist consultation.",
         "urgency": "Medical Attention Required",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",  "dose": "2000 mg",  "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "DHA/EPA support for slowing grey matter loss & inflammation",      "type": "nutrient"},
+            {"name": "Omega-3 (Fish Oil)",  "dose": "2000 mg",  "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "DHA/EPA support for slowing grey matter loss and inflammation",      "type": "nutrient"},
             {"name": "Vitamin E",           "dose": "800 IU",   "times": ["9:00 AM", "9:00 PM"],            "purpose": "High-dose neuroprotection against free radical damage",            "type": "nutrient"},
             {"name": "Choline",             "dose": "500 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Supports declining cholinergic neurons; aids recall",              "type": "nutrient"},
-            {"name": "Vitamin B12",         "dose": "1000 mcg", "times": ["8:00 AM", "1:00 PM"],            "purpose": "Repairs myelin damage; counters neurodegeneration from deficiency", "type": "nutrient"},
-            {"name": "Curcumin (Turmeric)", "dose": "750 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Actively reduces amyloid plaques & tau tangles",                  "type": "nutrient"},
+            {"name": "Vitamin B12",         "dose": "1000 mcg", "times": ["8:00 AM", "1:00 PM"],            "purpose": "Repairs myelin damage; counters neurodegeneration", "type": "nutrient"},
+            {"name": "Curcumin (Turmeric)", "dose": "750 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Actively reduces amyloid plaques and tau tangles",                  "type": "nutrient"},
         ],
     },
     "ModerateDemented": {
@@ -155,12 +155,12 @@ STAGE_DATA = {
         "description": "Significant cognitive impairment detected. Maximum nutritional support protocol initiated. Immediate specialist consultation required.",
         "urgency": "URGENT — See Neurologist Immediately",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",  "dose": "3000 mg",  "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Maximum DHA dose to slow advanced neuronal loss & inflammation",  "type": "nutrient"},
+            {"name": "Omega-3 (Fish Oil)",  "dose": "3000 mg",  "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Maximum DHA dose to slow advanced neuronal loss and inflammation",  "type": "nutrient"},
             {"name": "Beta-Carotene",       "dose": "15 mg",    "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Maximum antioxidant coverage for severe oxidative brain damage",  "type": "nutrient"},
             {"name": "Vitamin E",           "dose": "1000 IU",  "times": ["9:00 AM", "3:00 PM", "9:00 PM"], "purpose": "Peak neuroprotective dose; slows advanced neurodegeneration",     "type": "nutrient"},
             {"name": "Choline",             "dose": "650 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Critical support for severely depleted cholinergic pathways",     "type": "nutrient"},
             {"name": "Vitamin B12",         "dose": "1500 mcg", "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Maximum B12 support for severely depleted neurological pathways", "type": "nutrient"},
-            {"name": "Curcumin (Turmeric)", "dose": "1000 mg",  "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "High-dose plaque & tangle inhibition in advanced Alzheimer's",    "type": "nutrient"},
+            {"name": "Curcumin (Turmeric)", "dose": "1000 mg",  "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "High-dose plaque and tangle inhibition in advanced Alzheimer's",    "type": "nutrient"},
         ],
     },
 }
