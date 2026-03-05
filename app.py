@@ -118,12 +118,12 @@ STAGE_DATA = {
         "description": "No signs of Alzheimer's detected. Brain function appears normal. Preventive supplementation is recommended to maintain cognitive health.",
         "urgency": "Preventive Care",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",  "dose": "500 mg",  "times": ["8:00 AM"],            "purpose": "Supports brain cell membrane integrity and cognitive longevity",    "type": "nutrient"},
-            {"name": "Beta-Carotene",       "dose": "3 mg",    "times": ["8:00 AM"],            "purpose": "Antioxidant precursor to Vitamin A; protects neurons",            "type": "nutrient"},
-            {"name": "Vitamin E",           "dose": "200 IU",  "times": ["9:00 AM"],            "purpose": "Neuroprotective antioxidant; protects cell membranes",            "type": "nutrient"},
-            {"name": "Choline",             "dose": "250 mg",  "times": ["8:00 AM"],            "purpose": "Precursor to acetylcholine; supports memory and learning",          "type": "nutrient"},
-            {"name": "Vitamin B12",         "dose": "500 mcg", "times": ["8:00 AM"],            "purpose": "Reduces homocysteine; supports myelin sheath and nerve conduction",  "type": "nutrient"},
-            {"name": "Curcumin (Turmeric)", "dose": "250 mg",  "times": ["8:00 AM"],            "purpose": "Mild anti-inflammatory; early amyloid plaque prevention",         "type": "nutrient"},
+            {"name": "Omega-3 (Fish Oil)",  "dose": "250 mg",  "times": ["8:00 AM"], "purpose": "Supports brain cell membrane integrity and cognitive longevity",    "food": "Salmon, Walnuts, Flaxseeds, Sardines",            "type": "nutrient"},
+            {"name": "Beta-Carotene",       "dose": "2 mg",    "times": ["8:00 AM"], "purpose": "Antioxidant precursor to Vitamin A; protects neurons",              "food": "Carrots, Sweet Potato, Pumpkin, Spinach",          "type": "nutrient"},
+            {"name": "Vitamin E",           "dose": "100 IU",  "times": ["8:00 AM"], "purpose": "Neuroprotective antioxidant; protects cell membranes",              "food": "Almonds, Sunflower Seeds, Avocado, Olive Oil",     "type": "nutrient"},
+            {"name": "Choline",             "dose": "200 mg",  "times": ["8:00 AM"], "purpose": "Precursor to acetylcholine; supports memory and learning",          "food": "Eggs, Chicken Liver, Soybeans, Broccoli",          "type": "nutrient"},
+            {"name": "Vitamin B12",         "dose": "250 mcg", "times": ["8:00 AM"], "purpose": "Reduces homocysteine; supports myelin sheath and nerve conduction", "food": "Eggs, Milk, Paneer, Fortified Cereals",            "type": "nutrient"},
+            {"name": "Curcumin (Turmeric)", "dose": "250 mg",  "times": ["8:00 AM"], "purpose": "Mild anti-inflammatory; early amyloid plaque prevention",           "food": "Turmeric Milk, Curry, Golden Paste, Turmeric Tea", "type": "nutrient"},
         ],
     },
     "VeryMildDemented": {
@@ -131,11 +131,11 @@ STAGE_DATA = {
         "description": "Very early-stage cognitive changes detected. Lifestyle modifications and increased nutritional support can significantly slow progression.",
         "urgency": "Early Intervention Recommended",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",  "dose": "1000 mg", "times": ["8:00 AM", "8:00 PM"], "purpose": "Reduces neuroinflammation; supports synaptic plasticity",          "type": "nutrient"},
-            {"name": "Vitamin E",           "dose": "400 IU",  "times": ["9:00 AM"],             "purpose": "Slows oxidative damage to neurons in early-stage decline",        "type": "nutrient"},
-            {"name": "Choline",             "dose": "375 mg",  "times": ["8:00 AM", "1:00 PM"], "purpose": "Boosts acetylcholine production for memory preservation",         "type": "nutrient"},
-            {"name": "Vitamin B12",         "dose": "750 mcg", "times": ["8:00 AM"],             "purpose": "Slows brain atrophy linked to B12 deficiency in early decline",  "type": "nutrient"},
-            {"name": "Curcumin (Turmeric)", "dose": "500 mg",  "times": ["8:00 AM", "6:00 PM"], "purpose": "Anti-inflammatory; begins inhibiting amyloid-beta aggregation",    "type": "nutrient"},
+            {"name": "Omega-3 (Fish Oil)",  "dose": "500 mg",  "times": ["8:00 AM"],             "purpose": "Reduces neuroinflammation; supports synaptic plasticity",         "food": "Salmon, Mackerel, Walnuts, Chia Seeds",           "type": "nutrient"},
+            {"name": "Vitamin E",           "dose": "200 IU",  "times": ["8:00 AM"],             "purpose": "Slows oxidative damage to neurons in early-stage decline",        "food": "Almonds, Hazelnuts, Spinach, Sunflower Seeds",    "type": "nutrient"},
+            {"name": "Choline",             "dose": "250 mg",  "times": ["8:00 AM"],             "purpose": "Boosts acetylcholine production for memory preservation",         "food": "Eggs, Chicken, Soybeans, Kidney Beans",           "type": "nutrient"},
+            {"name": "Vitamin B12",         "dose": "500 mcg", "times": ["8:00 AM"],             "purpose": "Slows brain atrophy linked to B12 deficiency in early decline",  "food": "Milk, Curd, Paneer, Fortified Soy Milk",          "type": "nutrient"},
+            {"name": "Curcumin (Turmeric)", "dose": "500 mg",  "times": ["8:00 AM", "8:00 PM"], "purpose": "Anti-inflammatory; begins inhibiting amyloid-beta aggregation",    "food": "Turmeric Milk, Curry, Turmeric Tea, Haldi Doodh", "type": "nutrient"},
         ],
     },
     "MildDemented": {
@@ -143,11 +143,11 @@ STAGE_DATA = {
         "description": "Mild cognitive decline detected. Intensified nutritional protocol recommended alongside neurologist consultation.",
         "urgency": "Medical Attention Required",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",  "dose": "2000 mg",  "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "DHA/EPA support for slowing grey matter loss and inflammation",      "type": "nutrient"},
-            {"name": "Vitamin E",           "dose": "800 IU",   "times": ["9:00 AM", "9:00 PM"],            "purpose": "High-dose neuroprotection against free radical damage",            "type": "nutrient"},
-            {"name": "Choline",             "dose": "500 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Supports declining cholinergic neurons; aids recall",              "type": "nutrient"},
-            {"name": "Vitamin B12",         "dose": "1000 mcg", "times": ["8:00 AM", "1:00 PM"],            "purpose": "Repairs myelin damage; counters neurodegeneration", "type": "nutrient"},
-            {"name": "Curcumin (Turmeric)", "dose": "750 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Actively reduces amyloid plaques and tau tangles",                  "type": "nutrient"},
+            {"name": "Omega-3 (Fish Oil)",  "dose": "500 mg",  "times": ["8:00 AM", "8:00 PM"], "purpose": "DHA and EPA support for slowing grey matter loss and inflammation", "food": "Salmon, Sardines, Walnuts, Flaxseed Oil",      "type": "nutrient"},
+            {"name": "Vitamin E",           "dose": "200 IU",  "times": ["8:00 AM", "8:00 PM"], "purpose": "High-dose neuroprotection against free radical damage",             "food": "Almonds, Avocado, Olive Oil, Sunflower Seeds", "type": "nutrient"},
+            {"name": "Choline",             "dose": "250 mg",  "times": ["8:00 AM", "8:00 PM"], "purpose": "Supports declining cholinergic neurons; aids recall",               "food": "Eggs, Chicken Liver, Soybeans, Lentils",       "type": "nutrient"},
+            {"name": "Vitamin B12",         "dose": "500 mcg", "times": ["8:00 AM"],            "purpose": "Repairs myelin damage; counters neurodegeneration",                "food": "Eggs, Milk, Fish, Fortified Cereals",          "type": "nutrient"},
+            {"name": "Curcumin (Turmeric)", "dose": "500 mg",  "times": ["8:00 AM", "8:00 PM"], "purpose": "Actively reduces amyloid plaques and tau tangles",                 "food": "Turmeric Milk, Curry, Golden Paste",           "type": "nutrient"},
         ],
     },
     "ModerateDemented": {
@@ -155,12 +155,12 @@ STAGE_DATA = {
         "description": "Significant cognitive impairment detected. Maximum nutritional support protocol initiated. Immediate specialist consultation required.",
         "urgency": "URGENT — See Neurologist Immediately",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",  "dose": "3000 mg",  "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Maximum DHA dose to slow advanced neuronal loss and inflammation",  "type": "nutrient"},
-            {"name": "Beta-Carotene",       "dose": "15 mg",    "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Maximum antioxidant coverage for severe oxidative brain damage",  "type": "nutrient"},
-            {"name": "Vitamin E",           "dose": "1000 IU",  "times": ["9:00 AM", "3:00 PM", "9:00 PM"], "purpose": "Peak neuroprotective dose; slows advanced neurodegeneration",     "type": "nutrient"},
-            {"name": "Choline",             "dose": "650 mg",   "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "Critical support for severely depleted cholinergic pathways",     "type": "nutrient"},
-            {"name": "Vitamin B12",         "dose": "1500 mcg", "times": ["8:00 AM", "1:00 PM", "8:00 PM"], "purpose": "Maximum B12 support for severely depleted neurological pathways", "type": "nutrient"},
-            {"name": "Curcumin (Turmeric)", "dose": "1000 mg",  "times": ["8:00 AM", "1:00 PM", "6:00 PM"], "purpose": "High-dose plaque and tangle inhibition in advanced Alzheimer's",    "type": "nutrient"},
+            {"name": "Omega-3 (Fish Oil)",  "dose": "500 mg",  "times": ["8:00 AM", "8:00 PM"], "purpose": "DHA and EPA to slow advanced neuronal loss and inflammation",       "food": "Salmon, Mackerel, Sardines, Walnuts",             "type": "nutrient"},
+            {"name": "Beta-Carotene",       "dose": "3 mg",    "times": ["8:00 AM", "8:00 PM"], "purpose": "Antioxidant coverage for severe oxidative brain damage",            "food": "Carrots, Sweet Potato, Mango, Papaya",            "type": "nutrient"},
+            {"name": "Vitamin E",           "dose": "200 IU",  "times": ["8:00 AM", "8:00 PM"], "purpose": "Neuroprotective dose; slows advanced neurodegeneration",            "food": "Almonds, Sunflower Seeds, Avocado, Olive Oil",    "type": "nutrient"},
+            {"name": "Choline",             "dose": "250 mg",  "times": ["8:00 AM", "8:00 PM"], "purpose": "Critical support for severely depleted cholinergic pathways",       "food": "Eggs, Chicken, Soybeans, Broccoli",               "type": "nutrient"},
+            {"name": "Vitamin B12",         "dose": "500 mcg", "times": ["8:00 AM", "8:00 PM"], "purpose": "B12 support for severely depleted neurological pathways",           "food": "Eggs, Milk, Fish, Fortified Soy Milk",            "type": "nutrient"},
+            {"name": "Curcumin (Turmeric)", "dose": "500 mg",  "times": ["8:00 AM", "8:00 PM"], "purpose": "Plaque and tangle inhibition in advanced Alzheimer's",             "food": "Turmeric Milk, Curry, Golden Paste, Haldi Doodh", "type": "nutrient"},
         ],
     },
 }
@@ -750,14 +750,15 @@ with tab1:
             for item in data["supplements"]:
                 tc       = data["color"] if item["type"] == "medication" else "#a78bfa"
                 lb       = data["color"] if item["type"] == "medication" else "#6366f1"
-                sched_times = " &nbsp;&nbsp;|&nbsp;&nbsp; ".join([f"<strong>{t}</strong>" for t in item["times"]])
+                sched_times = " &nbsp;|&nbsp; ".join([f"<strong>{t}</strong>" for t in item["times"]])
                 badge_bg = "#0d1e38" if item["type"] == "medication" else "#1a0a44"
+                food_src = item.get("food", "")
 
                 st.markdown(f"""
                 <div style="background:#0d1526;border:1px solid #1e293b;border-left:3px solid {lb};
                             border-radius:10px;padding:14px 18px;margin-bottom:10px;">
-                  <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;">
 
+                  <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;">
                     <div style="flex:1;min-width:180px;">
                       <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
                         <strong style="color:{tc};font-size:14px;letter-spacing:.01em;">{item['name']}</strong>
@@ -765,9 +766,7 @@ with tab1:
                                      border-radius:6px;padding:2px 9px;font-size:9px;
                                      text-transform:uppercase;letter-spacing:.1em;font-weight:700;">{item['type']}</span>
                       </div>
-                      <div style="font-size:12px;color:#94a3b8;line-height:1.7;margin-top:2px;">
-                        {item['purpose']}
-                      </div>
+                      <div style="font-size:12px;color:#94a3b8;line-height:1.7;">{item['purpose']}</div>
                     </div>
 
                     <div style="display:flex;gap:28px;flex-shrink:0;align-items:flex-start;padding-top:2px;">
@@ -783,8 +782,15 @@ with tab1:
                                     line-height:2;">{sched_times}</div>
                       </div>
                     </div>
-
                   </div>
+
+                  {"" if not food_src else f'''
+                  <div style="margin-top:10px;padding-top:10px;border-top:1px solid #1e293b;">
+                    <div style="font-size:10px;color:#4ade80;text-transform:uppercase;
+                                letter-spacing:.12em;font-weight:700;margin-bottom:5px;">NATURAL FOOD SOURCES</div>
+                    <div style="font-size:12px;color:#cbd5e1;line-height:1.7;">{food_src}</div>
+                  </div>'''}
+
                 </div>
                 """, unsafe_allow_html=True)
 
