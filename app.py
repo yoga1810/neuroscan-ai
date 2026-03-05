@@ -131,11 +131,11 @@ STAGE_DATA = {
         "description": "Very early-stage cognitive changes detected. Lifestyle modifications and increased nutritional support can significantly slow progression.",
         "urgency": "Early Intervention Recommended",
         "supplements": [
-            {"name": "Omega-3 (Fish Oil)",  "dose": "1000 mg", "times": ["8:00 AM", "8:00 PM"], "purpose": "Reduces neuroinflammation; supports synaptic plasticity",          "type": "nutrient"},
+            {"name": "Omega-3 (Fish Oil)",  "dose": "1000 mg", "times": ["8:00 AM", "8:00 PM"], "purpose": "Reduces neuro inflammation; supports synaptic plasticity",          "type": "nutrient"},
             {"name": "Vitamin E",           "dose": "400 IU",  "times": ["9:00 AM"],             "purpose": "Slows oxidative damage to neurons in early-stage decline",        "type": "nutrient"},
             {"name": "Choline",             "dose": "375 mg",  "times": ["8:00 AM", "1:00 PM"], "purpose": "Boosts acetylcholine production for memory preservation",         "type": "nutrient"},
             {"name": "Vitamin B12",         "dose": "750 mcg", "times": ["8:00 AM"],             "purpose": "Slows brain atrophy linked to B12 deficiency in early decline",  "type": "nutrient"},
-            {"name": "Curcumin (Turmeric)", "dose": "500 mg",  "times": ["8:00 AM", "6:00 PM"], "purpose": "Anti-inflammatory; begins inhibiting amyloid-beta aggregation",    "type": "nutrient"},
+            {"name": "Curcumin (Turmeric)", "dose": "500 mg",  "times": ["8:00 AM", "6:00 PM"], "purpose": "Anti-inflammatory begins inhibiting amyloid-beta aggregation",    "type": "nutrient"},
         ],
     },
     "MildDemented": {
