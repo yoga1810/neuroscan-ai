@@ -22,10 +22,10 @@ st.set_page_config(
 # ── Styling ────────────────────────────────────────────────────
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 html, body, [class*="css"], .css-18e3th9, .css-1d391kg {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: #0d1526 !important;
     color: #ffffff !important;
     font-weight: 600;
@@ -33,11 +33,11 @@ html, body, [class*="css"], .css-18e3th9, .css-1d391kg {
 .main, .block-container { background-color: transparent !important; }
 
 h1, h2, h3 {
-    font-family: 'DM Serif Display', serif !important;
+    font-family: 'Playfair Display', serif !important;
     font-weight: 700 !important;
 }
 .block-container { padding: 2rem 2.5rem; max-width: 1150px; }
-h1, h2, h3 { font-family: 'DM Serif Display', serif !important; }
+h1, h2, h3 { font-family: 'Playfair Display', serif !important; }
 
 section[data-testid="stSidebar"] {
     background: #0d1526 !important;
@@ -61,7 +61,7 @@ div[data-testid="stFileUploader"]:hover { border-color: #6b7280; }
     font-weight: 700 !important;
     border-radius: 10px !important;
     padding: 0.6rem 1.5rem !important;
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: 'Inter', sans-serif !important;
     letter-spacing: .03em !important;
     transition: opacity .2s !important;
 }
@@ -72,7 +72,7 @@ div[data-testid="stFileUploader"]:hover { border-color: #6b7280; }
     border: 1px solid #1e293b !important;
     color: #ffffff !important;
     border-radius: 10px !important;
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: 'Inter', sans-serif !important;
     font-weight: 600 !important;
 }
 .stTextInput > div > div > input:focus { border-color: #6366f1 !important; }
@@ -518,7 +518,7 @@ with st.sidebar:
     st.markdown("""
     <div style="text-align:center;padding:16px 0 24px;">
       <div style="font-size:40px;margin-bottom:6px;">🧬</div>
-      <h2 style="margin:0;color:#e0e7ff !important;font-family:'DM Serif Display',serif;font-size:20px;">NeuroScan AI</h2>
+      <h2 style="margin:0;color:#e0e7ff !important;font-family:'Playfair Display',serif;font-size:20px;">NeuroScan AI</h2>
       <p style="margin:4px 0 0;color:#6366f1 !important;font-size:10px;letter-spacing:.15em;text-transform:uppercase;">
         Alzheimer's Detection
       </p>
@@ -526,7 +526,7 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.markdown("**ℹ️ About**")
+    st.markdown("**About**")
     st.markdown("""
     <p style="font-size:12px;line-height:1.7;color:#e2e8f0 !important;">
     This app uses a deep learning model based on <strong style="color:#e2e8f0 !important;">EfficientNet-B0</strong>
@@ -552,13 +552,13 @@ with st.sidebar:
     st.markdown("""
     <div style="background:rgba(239,68,68,.06);border:1px solid #7f1d1d;border-radius:8px;padding:10px 12px;">
       <p style="margin:0;color:#f87171 !important;font-size:11px;line-height:1.6;">
-        ⚕ For educational purposes only. Not a substitute for professional medical advice.
+        For educational purposes only. Not a substitute for professional medical advice.
       </p>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.markdown("**🤖 AI Chatbot**")
+    st.markdown("**AI Chatbot**")
     st.markdown("""
     <p style="font-size:11px;color:#4ade80 !important;margin-top:4px;">✅ AI Assistant is active</p>
     """, unsafe_allow_html=True)
@@ -594,7 +594,7 @@ with tab1:
 
     # ── Upload ───────────────────────────────────────────────
     uploaded = st.file_uploader(
-        "📤 Upload Brain MRI Scan",
+        "Upload Brain MRI Scan",
         type=["jpg", "jpeg", "png"],
         help="Upload an axial T1-weighted MRI scan. JPG or PNG format.",
     )
@@ -721,7 +721,7 @@ with tab1:
                 <span style="font-size:28px;">{data['emoji']}</span>
                 <div>
                   <div style="color:{data['color']};font-size:20px;font-weight:700;
-                              font-family:'DM Serif Display',serif;">{data['label']}</div>
+                              font-family:'Playfair Display',serif;">{data['label']}</div>
                   <div style="color:#cbd5e1;font-size:12px;margin-top:2px;">
                     Confidence: <strong style="color:{data['color']};">{conf:.1f}%</strong>
                     &nbsp;·&nbsp; <span style="color:{data['color']};">{data['urgency']}</span>
@@ -786,7 +786,7 @@ with tab1:
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
           <span style="font-size:22px;">📧</span>
           <div>
-            <h3 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:17px;font-family:'DM Serif Display',serif;">
+            <h3 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:17px;font-family:'Playfair Display',serif;">
               Send Prescription Email Alert
             </h3>
             <p style="margin:3px 0 0;color:#cbd5e1;font-size:12px;">
@@ -802,9 +802,9 @@ with tab1:
         with ec2:
             sender_em = st.text_input("📤 Your Gmail Address", placeholder="youremail@gmail.com")
         with ec3:
-            sender_pw = st.text_input("🔑 Gmail App Password", placeholder="xxxx xxxx xxxx xxxx", type="password")
+            sender_pw = st.text_input("Gmail App Password", placeholder="xxxx xxxx xxxx xxxx", type="password")
 
-        if st.button("📨 Send Prescription Email", use_container_width=True):
+        if st.button("Send Prescription Email", use_container_width=True):
             if not recipient or "@" not in recipient:
                 st.error("⚠️ Please enter a valid recipient email address.")
             elif not sender_em or not sender_pw:
@@ -847,11 +847,10 @@ with tab1:
 
         st.markdown(f"""
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-          <span style="font-size:22px;">🤖</span>
-          <div>
+              <div>
             <h3 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;
                        -webkit-text-fill-color:transparent;background-clip:text;font-size:17px;
-                       font-family:'DM Serif Display',serif;">NeuroScan AI Assistant</h3>
+                       font-family:'Playfair Display',serif;">NeuroScan AI Assistant</h3>
             <p style="margin:3px 0 0;color:#cbd5e1;font-size:12px;">
               Ask anything about the diagnosis, nutrients, caregiving, or lifestyle advice
             </p>
@@ -864,19 +863,19 @@ with tab1:
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
           <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:20px;
                       padding:5px 12px;font-size:11px;color:#38bdf8;cursor:pointer;">
-            💊 What do these nutrients do?
+            What do these nutrients do?
           </div>
           <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:20px;
                       padding:5px 12px;font-size:11px;color:#38bdf8;cursor:pointer;">
-            🍎 What foods should the patient eat?
+            What foods should the patient eat?
           </div>
           <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:20px;
                       padding:5px 12px;font-size:11px;color:#38bdf8;cursor:pointer;">
-            🧠 What does this stage mean day-to-day?
+            What does this stage mean day-to-day?
           </div>
           <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:20px;
                       padding:5px 12px;font-size:11px;color:#38bdf8;cursor:pointer;">
-            👨‍👩‍👧 How can I help as a caregiver?
+            How can I help as a caregiver?
           </div>
         </div>
         """, unsafe_allow_html=True)
@@ -988,8 +987,7 @@ with tab2:
     <div style="background:#0d1526;border:1px solid #1e3a5f;border-radius:14px;
                 padding:20px;margin-bottom:20px;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
-        <span style="font-size:18px;">📝</span>
-        <h3 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);
+          <h3 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);
                    -webkit-background-clip:text;-webkit-text-fill-color:transparent !important;
                    background-clip:text;font-size:16px;letter-spacing:.02em;color:transparent !important;">
           Log Today's Symptoms
@@ -1000,31 +998,31 @@ with tab2:
     # Patient ID row
     pid_col1, pid_col2, pid_col3 = st.columns([2, 2, 2])
     with pid_col1:
-        log_patient_id = st.text_input("🪪 Patient ID", placeholder="e.g. PT-001", key="log_pid")
+        log_patient_id = st.text_input("Patient ID", placeholder="e.g. PT-001", key="log_pid")
     with pid_col2:
-        log_patient_name = st.text_input("👤 Patient Name", placeholder="Full name", key="log_pname")
+        log_patient_name = st.text_input("Patient Name", placeholder="Full name", key="log_pname")
     with pid_col3:
-        log_date = st.date_input("📅 Date", value=datetime.now().date(), key="log_date")
+        log_date = st.date_input("Date", value=datetime.now().date(), key="log_date")
 
     log_col1, log_col2 = st.columns(2)
 
     with log_col1:
-        log_memory   = st.slider("🧠 Memory Loss",                0, 10, 3, key="log_memory", help="0 = None, 10 = Severe")
-        log_confusion= st.slider("😵 Confusion / Disorientation", 0, 10, 3, key="log_conf",   help="0 = None, 10 = Severe")
-        log_mood     = st.slider("😔 Mood Changes",               0, 10, 3, key="log_mood",   help="0 = None, 10 = Severe")
+        log_memory   = st.slider("Memory Loss",                0, 10, 3, key="log_memory", help="0 = None, 10 = Severe")
+        log_confusion= st.slider("Confusion / Disorientation", 0, 10, 3, key="log_conf",   help="0 = None, 10 = Severe")
+        log_mood     = st.slider("Mood Changes",               0, 10, 3, key="log_mood",   help="0 = None, 10 = Severe")
 
     with log_col2:
-        log_tasks    = st.slider("🏠 Daily Tasks Difficulty",     0, 10, 3, key="log_tasks",   help="0 = None, 10 = Severe")
-        log_sleep    = st.slider("😴 Sleep Quality",              0, 10, 5, key="log_sleep",   help="0 = Very Poor, 10 = Excellent")
-        log_overall  = st.slider("📊 Overall Condition",          0, 10, 5, key="log_overall", help="0 = Very Poor, 10 = Excellent")
+        log_tasks    = st.slider("Daily Tasks Difficulty",     0, 10, 3, key="log_tasks",   help="0 = None, 10 = Severe")
+        log_sleep    = st.slider("Sleep Quality",              0, 10, 5, key="log_sleep",   help="0 = Very Poor, 10 = Excellent")
+        log_overall  = st.slider("Overall Condition",          0, 10, 5, key="log_overall", help="0 = Very Poor, 10 = Excellent")
 
-    log_notes = st.text_input("📌 Notes (optional)", placeholder="Any observations or changes noticed today...", key="log_notes")
+    log_notes = st.text_input("Notes (optional)", placeholder="Any observations or changes noticed today...", key="log_notes")
 
     st.markdown("</div>", unsafe_allow_html=True)
 
     save_col, clear_col = st.columns([3, 1])
     with save_col:
-        if st.button("💾 Save Today's Log", use_container_width=True, key="save_log"):
+        if st.button("Save Log", use_container_width=True, key="save_log"):
             new_log = {
                 "date":         str(log_date),
                 "patient_id":   log_patient_id,
@@ -1048,7 +1046,7 @@ with tab2:
                 st.success("✅ Log saved for " + str(log_date) + (" — " + log_patient_id if log_patient_id else ""))
             st.rerun()
     with clear_col:
-        if st.button("🗑️ Clear All", use_container_width=True, key="clear_logs"):
+        if st.button("Clear All", use_container_width=True, key="clear_logs"):
             st.session_state.symptom_logs = []
             st.rerun()
 
@@ -1059,8 +1057,7 @@ with tab2:
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("""
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-          <span style="font-size:16px;">📈</span>
-          <h3 style="margin:0;color:#e2e8f0 !important;-webkit-text-fill-color:#e2e8f0 !important;font-size:15px;">Symptom History</h3>
+              <h3 style="margin:0;color:#e2e8f0 !important;-webkit-text-fill-color:#e2e8f0 !important;font-size:15px;">Symptom History</h3>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1083,8 +1080,7 @@ with tab2:
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("""
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-          <span style="font-size:16px;">📉</span>
-          <h3 style="margin:0;color:#e2e8f0 !important;-webkit-text-fill-color:#e2e8f0 !important;font-size:15px;">Trend Chart</h3>
+              <h3 style="margin:0;color:#e2e8f0 !important;-webkit-text-fill-color:#e2e8f0 !important;font-size:15px;">Trend Chart</h3>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1096,8 +1092,7 @@ with tab2:
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("""
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-          <span style="font-size:20px;">🤖</span>
-          <div>
+              <div>
             <h3 style="margin:0;background:linear-gradient(135deg,#6366f1,#818cf8);-webkit-background-clip:text;
                        -webkit-text-fill-color:transparent;background-clip:text;font-size:16px;">
               AI Trend Analysis
@@ -1117,7 +1112,7 @@ with tab2:
             </div>
             """, unsafe_allow_html=True)
         else:
-            if st.button("🔍 Analyse Trends with AI", use_container_width=True, key="analyse_trends"):
+            if st.button("Analyse Trends with AI", use_container_width=True, key="analyse_trends"):
                 with st.spinner("🤖 AI is analysing your symptom patterns..."):
                     analysis = analyze_symptom_trends(logs)
                 st.session_state.trend_analysis = analysis
@@ -1142,8 +1137,7 @@ with tab2:
                 <div style="background:linear-gradient(135deg,{risk_color}0a,{risk_bg});
                             border:1.5px solid {risk_color}55;border-radius:14px;padding:20px;margin-top:8px;">
                   <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                    <span style="font-size:22px;">🧠</span>
-                    <div>
+                                  <div>
                       <div style="color:{risk_color};font-size:15px;font-weight:700;">AI Trend Report</div>
                       <div style="color:#cbd5e1;font-size:11px;margin-top:2px;">
                         Based on {len(logs)} logged entries · {logs[0]["date"]} → {logs[-1]["date"]}
@@ -1273,7 +1267,7 @@ with tab3:
               <div style="text-align:center;margin-bottom:16px;">
                 <div style="font-size:32px;margin-bottom:6px;">{plan['emoji']}</div>
                 <div style="color:{plan['color']};font-size:18px;font-weight:700;
-                            font-family:'DM Serif Display',serif;">{plan['name']}</div>
+                            font-family:'Playfair Display',serif;">{plan['name']}</div>
                 <div style="margin-top:10px;">
                   <span style="color:{plan['color']};font-size:28px;font-weight:700;">{plan['price_inr']}</span>
                   <span style="color:#94a3b8;font-size:11px;"> / {plan['period']}</span>
