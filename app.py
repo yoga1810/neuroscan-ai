@@ -754,6 +754,15 @@ with tab1:
                 badge_bg = "#0d1e38" if item["type"] == "medication" else "#1a0a44"
                 food_src = item.get("food", "")
 
+                food_html = ""
+                if food_src:
+                    food_html = f"""
+                  <div style="margin-top:10px;padding-top:10px;border-top:1px solid #1e293b;">
+                    <div style="font-size:10px;color:#4ade80;text-transform:uppercase;
+                                letter-spacing:.12em;font-weight:700;margin-bottom:5px;">NATURAL FOOD SOURCES</div>
+                    <div style="font-size:12px;color:#cbd5e1;line-height:1.7;">{food_src}</div>
+                  </div>"""
+
                 st.markdown(f"""
                 <div style="background:#0d1526;border:1px solid #1e293b;border-left:3px solid {lb};
                             border-radius:10px;padding:14px 18px;margin-bottom:10px;">
@@ -784,12 +793,7 @@ with tab1:
                     </div>
                   </div>
 
-                  {"" if not food_src else f'''
-                  <div style="margin-top:10px;padding-top:10px;border-top:1px solid #1e293b;">
-                    <div style="font-size:10px;color:#4ade80;text-transform:uppercase;
-                                letter-spacing:.12em;font-weight:700;margin-bottom:5px;">NATURAL FOOD SOURCES</div>
-                    <div style="font-size:12px;color:#cbd5e1;line-height:1.7;">{food_src}</div>
-                  </div>'''}
+                  {food_html}
 
                 </div>
                 """, unsafe_allow_html=True)
